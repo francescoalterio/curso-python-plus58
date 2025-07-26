@@ -115,8 +115,8 @@ La función `index()` devuelve el índice de la primera aparición de un element
 **Parámetros:**
 
 - `element` (tipo: cualquier): Elemento a buscar.
-- `start` (tipo: `int`, opcional): Índice inicial.
-- `end` (tipo: `int`, opcional): Índice final.
+- `start` (tipo: `int`, opcional): Índice inicial (posición desde donde comienza la búsqueda, empezando en 0).
+- `end` (tipo: `int`, opcional): Índice final (posición hasta donde se realiza la búsqueda, sin incluir este índice).
 
 **Retorno:** `int` - Índice del elemento. Lanza un error si no existe.
 

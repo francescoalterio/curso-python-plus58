@@ -145,8 +145,8 @@ La función `find()` busca una subcadena y devuelve el índice de su primera apa
 **Parámetros:**
 
 - `sub` (tipo: `str`): Subcadena a buscar.
-- `start` (tipo: `int`, opcional): Índice inicial.
-- `end` (tipo: `int`, opcional): Índice final.
+- `start` (tipo: `int`, opcional): Índice inicial (posición desde donde comienza la búsqueda o comparación, empezando en 0).
+- `end` (tipo: `int`, opcional): Índice final (posición hasta donde se realiza la búsqueda o comparación, sin incluir este índice).
 
 **Retorno:** `int` - Índice de la primera aparición o -1.
 
@@ -164,8 +164,8 @@ La función `count()` cuenta cuántas veces aparece una subcadena en la cadena.
 **Parámetros:**
 
 - `sub` (tipo: `str`): Subcadena a contar.
-- `start` (tipo: `int`, opcional): Índice inicial.
-- `end` (tipo: `int`, opcional): Índice final.
+- `start` (tipo: `int`, opcional): Índice inicial (posición desde donde comienza la búsqueda o comparación, empezando en 0).
+- `end` (tipo: `int`, opcional): Índice final (posición hasta donde se realiza la búsqueda o comparación, sin incluir este índice).
 
 **Retorno:** `int` - Número de apariciones.
 
@@ -183,8 +183,8 @@ La función `startswith()` verifica si la cadena comienza con una subcadena.
 **Parámetros:**
 
 - `prefix` (tipo: `str` o `tuple`): Prefijo a comprobar.
-- `start` (tipo: `int`, opcional): Índice inicial.
-- `end` (tipo: `int`, opcional): Índice final.
+- `start` (tipo: `int`, opcional): Índice inicial (posición desde donde comienza la búsqueda o comparación, empezando en 0).
+- `end` (tipo: `int`, opcional): Índice final (posición hasta donde se realiza la búsqueda o comparación, sin incluir este índice).
 
 **Retorno:** `bool` - True si comienza con el prefijo, False en caso contrario.
 
@@ -202,8 +202,8 @@ La función `endswith()` verifica si la cadena termina con una subcadena.
 **Parámetros:**
 
 - `suffix` (tipo: `str` o `tuple`): Sufijo a comprobar.
-- `start` (tipo: `int`, opcional): Índice inicial.
-- `end` (tipo: `int`, opcional): Índice final.
+- `start` (tipo: `int`, opcional): Índice inicial (posición desde donde comienza la búsqueda o comparación, empezando en 0).
+- `end` (tipo: `int`, opcional): Índice final (posición hasta donde se realiza la búsqueda o comparación, sin incluir este índice).
 
 **Retorno:** `bool` - True si termina con el sufijo, False en caso contrario.
 
@@ -217,6 +217,9 @@ print(cadena.endswith("Mundo"))  # True
 ## 13. isdigit()
 
 La función `isdigit()` verifica si todos los caracteres de la cadena son dígitos.
+
+**¿Qué significa dígitos?**
+Son los caracteres del 0 al 9. No incluye signos, puntos decimales ni espacios.
 
 **Parámetros:**
 
@@ -235,6 +238,9 @@ print(cadena.isdigit())  # True
 
 La función `isnumeric()` verifica si todos los caracteres de la cadena son numéricos.
 
+**¿Qué significa numéricos?**
+Incluye dígitos (0-9), números en otros sistemas (como números romanos, fracciones, subíndices, superíndices) y algunos caracteres especiales que representan números.
+
 **Parámetros:**
 
 - No recibe parámetros.
@@ -251,6 +257,9 @@ print(cadena.isnumeric())  # True
 ## 15. isalpha()
 
 La función `isalpha()` verifica si todos los caracteres de la cadena son letras.
+
+**¿Qué significa letras?**
+Son caracteres alfabéticos, es decir, de la A a la Z (mayúsculas y minúsculas) y letras de otros alfabetos. No incluye espacios, números ni símbolos.
 
 **Parámetros:**
 
@@ -269,6 +278,9 @@ print(cadena.isalpha())  # True
 
 La función `isalnum()` verifica si todos los caracteres de la cadena son alfanuméricos.
 
+**¿Qué significa alfanuméricos?**
+Son letras (A-Z, a-z) y números (0-9). No incluye espacios ni símbolos.
+
 **Parámetros:**
 
 - No recibe parámetros.
@@ -282,7 +294,27 @@ cadena = "Hola123"
 print(cadena.isalnum())  # True
 ```
 
-## 17. zfill()
+## 17. isdecimal()
+
+La función `isdecimal()` verifica si todos los caracteres de la cadena son decimales.
+
+**¿Qué significa decimales?**
+Son los dígitos del 0 al 9. No incluye números romanos, fracciones ni caracteres especiales.
+
+**Parámetros:**
+
+- No recibe parámetros.
+
+**Retorno:** `bool` - True si todos los caracteres son decimales, False en caso contrario.
+
+**Ejemplo:**
+
+```python
+cadena = "12345"
+print(cadena.isdecimal())  # True
+```
+
+## 18. zfill()
 
 La función `zfill()` rellena la cadena con ceros a la izquierda hasta alcanzar una longitud especificada.
 
@@ -297,4 +329,64 @@ La función `zfill()` rellena la cadena con ceros a la izquierda hasta alcanzar 
 ```python
 cadena = "42"
 print(cadena.zfill(5))  # 00042
+```
+
+## 19. islower()
+
+La función `islower()` verifica si todos los caracteres alfabéticos de la cadena están en minúsculas.
+
+**¿Qué significa minúsculas?**
+Son letras de la a a la z, sin incluir mayúsculas. Los caracteres no alfabéticos se ignoran.
+
+**Parámetros:**
+
+- No recibe parámetros.
+
+**Retorno:** `bool` - True si todos los caracteres alfabéticos están en minúsculas, False en caso contrario.
+
+**Ejemplo:**
+
+```python
+cadena = "python"
+print(cadena.islower())  # True
+```
+
+## 20. isupper()
+
+La función `isupper()` verifica si todos los caracteres alfabéticos de la cadena están en mayúsculas.
+
+**¿Qué significa mayúsculas?**
+Son letras de la A a la Z, sin incluir minúsculas. Los caracteres no alfabéticos se ignoran.
+
+**Parámetros:**
+
+- No recibe parámetros.
+
+**Retorno:** `bool` - True si todos los caracteres alfabéticos están en mayúsculas, False en caso contrario.
+
+**Ejemplo:**
+
+```python
+cadena = "PYTHON"
+print(cadena.isupper())  # True
+```
+
+## 21. isspace()
+
+La función `isspace()` verifica si todos los caracteres de la cadena son espacios en blanco.
+
+**¿Qué significa espacios en blanco?**
+Incluye espacios, tabulaciones, saltos de línea y otros caracteres de espacio.
+
+**Parámetros:**
+
+- No recibe parámetros.
+
+**Retorno:** `bool` - True si todos los caracteres son espacios en blanco, False en caso contrario.
+
+**Ejemplo:**
+
+```python
+cadena = "   "
+print(cadena.isspace())  # True
 ```
