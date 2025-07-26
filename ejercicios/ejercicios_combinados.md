@@ -13,3 +13,4 @@
 6. Dada la lista `textos = ["  python  ", " java", "c++  ", " ruby "]`, elimina los espacios de cada elemento y ordénalos alfabéticamente.
 
 7. Dada la lista `palabras = ["Ana", "oso", "reconocer", "python"]`, muestra solo las palabras que son palíndromos (se leen igual al derecho y al revés, sin distinguir mayúsculas/minúsculas).
+ 

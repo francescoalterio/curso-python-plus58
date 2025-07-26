@@ -35,3 +35,4 @@
 ## 5. startswith(), endswith()
 
 9. Verifica si la cadena `nombre = "Ana"` comienza con "A" y termina con "a".
+ 
