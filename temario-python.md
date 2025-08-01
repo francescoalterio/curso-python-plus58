@@ -70,9 +70,9 @@
 
 ### Profundizacion de cadenas de texto
 
-- [ ] Métodos de cadenas: `.upper()`, `.lower()`, `.strip()`, `.find()`, `.replace()`, `.count()`, `.startswith()`, `.endswith()`, `.capitalize()`, `.title()`, `.split()`, `.join()`, `.isalpha()`, `.isdigit()`, `.isalnum()`, `.isspace()`, `.center()`, `.ljust()`, `.rjust()`.
+- [x] Métodos de cadenas: `.upper()`, `.lower()`, `.strip()`, `.find()`, `.replace()`, `.count()`, `.startswith()`, `.endswith()`, `.capitalize()`, `.title()`, `.split()`, `.join()`, `.isalpha()`, `.isdigit()`, `.isalnum()`, `.isspace()`, `.center()`, `.ljust()`, `.rjust()`.
 - [ ] Slicing de cadenas: acceso a subcadenas con `str[start:end]`.
-- [ ] Iteración sobre cadenas con `for`.
+- [x] Iteración sobre cadenas con `for`.
 
 ### Listas
 
@@ -81,7 +81,7 @@
 - [x] Métodos de listas: `append()`, `remove()`, `pop()`, `insert()`.
 - [ ]Mas métodos de listas: `sort()`, `reverse()`, `extend()`, `clear()`, `index()`, `count()`.
 - [ ] Slicing de listas.
-- [ ] Iteración sobre listas con `for`.
+- [x] Iteración sobre listas con `for`.
 
 ### Tuplas
 

@@ -35,3 +35,4 @@
 10. Invierte el orden de la lista anterior.
 
 11. Haz una copia de la lista y muestra ambas listas para comprobar que son diferentes objetos.
+ 

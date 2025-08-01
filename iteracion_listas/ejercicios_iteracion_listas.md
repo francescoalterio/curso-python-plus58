@@ -13,3 +13,4 @@
 6. Recorre la lista `frutas = ["manzana", "pera", "uva"]` y muestra el índice y el valor de cada elemento.
 
 7. Crea una lista nueva que contenga solo los números pares de la lista `numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+ 
