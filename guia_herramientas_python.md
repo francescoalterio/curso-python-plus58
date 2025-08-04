@@ -119,4 +119,42 @@ Cuando tengas un problema, piensa:
 - ¿Qué estructura de control me ayuda? (if, for, while)
 - ¿Qué métodos me facilitan el trabajo? (métodos de listas, cadenas, diccionarios)
 
+---
+
+## Operadores de asignación compuesta (`+=`, `-=`, `*=`, `/=`)
+
+Permiten actualizar el valor de una variable de forma más corta y clara:
+
+- `x += y` es igual a `x = x + y`
+- `x -= y` es igual a `x = x - y`
+- `x *= y` es igual a `x = x * y`
+- `x /= y` es igual a `x = x / y`
+
+Se usan mucho en bucles y acumuladores.
+
+---
+
+## Slicing de cadenas y listas
+
+Permite obtener una parte (subsecuencia) de una cadena o lista usando la sintaxis:
+
+- `secuencia[inicio:fin]` → desde el índice `inicio` hasta antes de `fin`.
+- `secuencia[inicio:fin:paso]` → puedes saltar elementos.
+- Puedes omitir `inicio` o `fin` para ir desde el principio o hasta el final.
+- Los índices negativos cuentan desde el final.
+
+Ejemplo:
+
+```python
+texto = "Hola mundo"
+print(texto[0:4])    # 'Hola'
+print(texto[-5:])    # 'mundo'
+lista = [1,2,3,4,5]
+print(lista[::2])    # [1,3,5]
+```
+
+El slicing es útil para extraer, invertir o copiar partes de secuencias.
+
+---
+
 ¡Usa esta guía como referencia rápida cuando no sepas por dónde empezar!
