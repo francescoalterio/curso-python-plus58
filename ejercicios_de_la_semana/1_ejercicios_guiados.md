@@ -1,65 +1,77 @@
-# Ejercicios Guiados: ¡Tú dictas, yo programo!
+# Ejercicios Guiados: Práctica Integral de Python
 
-El objetivo de estos ejercicios es que trabajemos en equipo. Ustedes me dirán, línea por línea, qué debo escribir en el código para resolver el problema. ¡Vamos a pensar como programadores juntos!
-
----
-
-### Ejercicio 1: Contador de Palabras
-
-**Objetivo:** Crear un programa que pida al usuario una frase y cuente cuántas palabras tiene.
-
-**Pistas:**
-
-- ¿Cómo pedimos una frase al usuario?
-- Una vez que tenemos la frase, ¿qué método de las cadenas nos puede ayudar a separar las palabras?
-- ¿En qué tipo de dato se guardan esas palabras separadas?
-- ¿Qué función nos permite saber cuántos elementos hay en una lista?
+Estos ejercicios están pensados para ser resueltos en clase, combinando lógica, cadenas, listas, diccionarios, funciones y control de flujo. El slicing puede ser útil en algunos, pero no es obligatorio en todos.
 
 ---
 
-### Ejercicio 2: Suma de Números Pares
+### Ejercicio 1: Analizador de Texto
 
-**Objetivo:** Calcular la suma de todos los números pares del 1 al 20.
+Pide al usuario una frase y muestra:
 
-**Pistas:**
-
-- ¿Cómo podemos generar una secuencia de números del 1 al 20?
-- Necesitaremos un bucle para recorrer cada número.
-- Dentro del bucle, ¿cómo sabemos si un número es par? (Pista: operador módulo `%`).
-- Necesitaremos una variable "acumuladora" que empiece en 0 y a la que le iremos sumando los números pares que encontremos.
+- Cuántas palabras tiene.
+- Cuántas letras tiene (sin contar espacios).
+- Cuántas veces aparece la letra "a" (mayúscula o minúscula).
 
 ---
 
-### Ejercicio 3: Creador de Nombres de Usuario
+### Ejercicio 2: Inventario de Tienda
 
-**Objetivo:** Crear un programa que pida al usuario su nombre, apellido y año de nacimiento, y genere un nombre de usuario uniendo el nombre, el apellido y el año, todo en minúsculas y sin espacios.
-
-**Ejemplo:**
-
-- Nombre: `Ana`
-- Apellido: `Pérez`
-- Año: `1995`
-- Nombre de usuario generado: `anaperez1995`
-
-**Pistas:**
-
-- ¿Cómo convertimos todo a minúsculas?
-- ¿Cómo eliminamos los espacios de las cadenas?
-- ¿Cómo unimos varias cadenas para formar una sola?
+Crea un diccionario con al menos 5 productos y sus cantidades. Permite al usuario consultar la cantidad de un producto, agregar stock o quitar stock. El programa debe repetirse hasta que el usuario escriba "salir".
 
 ---
 
-### Ejercicio 4 (Más complejo): Sistema de Login Simple
+### Ejercicio 3: Calculadora de Estadísticas
 
-**Objetivo:** Simular un sistema de inicio de sesión. El programa debe tener un nombre de usuario y una contraseña guardados. Pedirá al usuario que ingrese sus credenciales y le dará 3 intentos. Si acierta, le dará la bienvenida. Si falla 3 veces, le dirá que su cuenta está bloqueada.
+Pide al usuario una lista de números separados por coma. Calcula y muestra:
 
-**Pistas:**
+- El número mayor y menor.
+- El promedio.
+- La suma total.
 
-- Necesitaremos guardar el usuario y la contraseña correctos en variables.
-- Necesitaremos un contador para los intentos, que empiece en 0.
-- Un bucle `while` que se ejecute mientras los intentos sean menores que 3.
-- Dentro del bucle, pediremos al usuario su nombre y contraseña.
-- Usaremos un `if` para comparar si lo que ingresó es correcto.
-- Si es correcto, mostramos un mensaje de bienvenida y usamos `break` para salir del bucle.
-- Si no es correcto, aumentamos el contador de intentos y le decimos cuántos le quedan.
-- Después del bucle, un `if` puede comprobar si el usuario agotó sus intentos.
+---
+
+### Ejercicio 4: Validador de Contraseñas
+
+Pide al usuario que ingrese una contraseña y verifica que cumpla con los siguientes requisitos:
+
+- Al menos 8 caracteres.
+- Al menos una letra mayúscula y una minúscula.
+- Al menos un número.
+- No puede contener espacios.
+  Indica si la contraseña es válida o no.
+
+---
+
+### Ejercicio 5: Conversor de Temperaturas
+
+Pide al usuario una temperatura en grados Celsius y muestra su equivalente en Fahrenheit y Kelvin. Usa funciones para cada conversión.
+
+---
+
+### Ejercicio 6: Juego de Adivinanza
+
+El programa elige un número aleatorio entre 1 y 100. El usuario debe adivinarlo. Después de cada intento, el programa indica si el número es mayor o menor. El juego termina cuando el usuario acierta.
+
+---
+
+### Ejercicio 7: Formateo de Nombres
+
+Pide al usuario su nombre completo. Muestra el nombre en formato "Apellido, Nombre" (asume que solo hay un nombre y un apellido).
+
+---
+
+### Ejercicio 8: Filtrar Palabras
+
+Pide al usuario una frase y muestra solo las palabras que tengan 4 letras o más.
+
+---
+
+### Ejercicio 9: Diccionario de Frecuencias
+
+Pide al usuario una frase y crea un diccionario donde las claves sean las letras y los valores la cantidad de veces que aparece cada letra (ignora espacios y mayúsculas/minúsculas).
+
+---
+
+### Ejercicio 10: Generador de Tablas
+
+Pide al usuario un número y muestra su tabla de multiplicar del 1 al 10 usando un bucle y f-strings para el formato.
