@@ -7,14 +7,14 @@ En cada ejercicio analiza el código, predice la salida y explica la lógica. La
 ### Código 1
 
 ```python
-def suma_pares(lista):
+def funcion_1(lista):
     total = 0
     for n in lista:
         if n % 2 == 0:
             total += n
     return total
 
-print(suma_pares([1, 2, 3, 4, 5, 6]))
+print(funcion_1([1, 2, 3, 4, 5, 6]))
 ```
 
 <details>
@@ -27,7 +27,7 @@ print(suma_pares([1, 2, 3, 4, 5, 6]))
 ### Código 2
 
 ```python
-def invertir_palabras(frase):
+def funcion_2(frase):
     palabras = frase.split()
     resultado = []
     for p in palabras:
@@ -37,7 +37,7 @@ def invertir_palabras(frase):
             resultado.append(p)
     return " ".join(resultado)
 
-print(invertir_palabras("Hola a todos en clase"))
+print(funcion_2("Hola a todos en clase"))
 ```
 
 <details>
@@ -50,14 +50,14 @@ print(invertir_palabras("Hola a todos en clase"))
 ### Código 3
 
 ```python
-def filtrar_diccionario(d, valor_min):
+def funcion_3(d, valor_min):
     resultado = {}
     for k, v in d.items():
         if v >= valor_min:
             resultado[k] = v
     return resultado
 
-print(filtrar_diccionario({'a': 3, 'b': 7, 'c': 2, 'd': 10}, 5))
+print(funcion_3({'a': 3, 'b': 7, 'c': 2, 'd': 10}, 5))
 ```
 
 <details>
@@ -70,14 +70,14 @@ print(filtrar_diccionario({'a': 3, 'b': 7, 'c': 2, 'd': 10}, 5))
 ### Código 4
 
 ```python
-def cuenta_vocales(texto):
+def funcion_4(texto):
     contador = 0
     for letra in texto.lower():
         if letra in "aeiou":
             contador += 1
     return contador
 
-print(cuenta_vocales("Python es divertido"))
+print(funcion_4("Python es divertido"))
 ```
 
 <details>
@@ -90,7 +90,7 @@ print(cuenta_vocales("Python es divertido"))
 ### Código 5
 
 ```python
-def mayor_menor(lista):
+def funcion_5(lista):
     mayor = menor = lista[0]
     for n in lista:
         if n > mayor:
@@ -99,7 +99,7 @@ def mayor_menor(lista):
             menor = n
     return mayor, menor
 
-print(mayor_menor([8, 3, 5, 1, 9, 2]))
+print(funcion_5([8, 3, 5, 1, 9, 2]))
 ```
 
 <details>
@@ -112,11 +112,11 @@ print(mayor_menor([8, 3, 5, 1, 9, 2]))
 ### Código 6
 
 ```python
-def es_palindromo(palabra):
+def funcion_6(palabra):
     palabra = palabra.lower().replace(" ", "")
     return palabra == palabra[::-1]
 
-print(es_palindromo("Anita lava la tina"))
+print(funcion_6("Anita lava la tina"))
 ```
 
 <details>
@@ -129,14 +129,14 @@ print(es_palindromo("Anita lava la tina"))
 ### Código 7
 
 ```python
-def contar_mayores(lista, limite):
+def funcion_7(lista, limite):
     contador = 0
     for n in lista:
         if n > limite:
             contador += 1
     return contador
 
-print(contar_mayores([2, 5, 8, 1, 10], 4))
+print(funcion_7([2, 5, 8, 1, 10], 4))
 ```
 
 <details>
@@ -149,13 +149,13 @@ print(contar_mayores([2, 5, 8, 1, 10], 4))
 ### Código 8
 
 ```python
-def suma_digitos(numero):
+def funcion_8(numero):
     total = 0
     for d in str(numero):
         total += int(d)
     return total
 
-print(suma_digitos(12345))
+print(funcion_8(12345))
 ```
 
 <details>
@@ -168,7 +168,7 @@ print(suma_digitos(12345))
 ### Código 9
 
 ```python
-def reemplazar_vocales(texto):
+def funcion_9(texto):
     resultado = ""
     for letra in texto:
         if letra.lower() in "aeiou":
@@ -177,7 +177,7 @@ def reemplazar_vocales(texto):
             resultado += letra
     return resultado
 
-print(reemplazar_vocales("Python"))
+print(funcion_9("Python"))
 ```
 
 <details>
@@ -190,11 +190,11 @@ print(reemplazar_vocales("Python"))
 ### Código 10
 
 ```python
-def contar_palabras(frase):
+def funcion_10(frase):
     palabras = frase.split()
     return len(palabras)
 
-print(contar_palabras("Esto es un ejercicio de análisis"))
+print(funcion_10("Esto es un ejercicio de análisis"))
 ```
 
 <details>
