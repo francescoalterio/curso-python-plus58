@@ -37,6 +37,7 @@ pi_valor = math.pi        # 3.14159...
 
   - **Descripción**: Una constante que representa el número Pi (π ≈ 3.14159...).
   - **Retorno**: `float`.
+  - **Ejemplo**: `print(math.pi)` devuelve `3.141592653589793`.
 
 - **`math.sqrt(x)`**:
 
@@ -44,12 +45,14 @@ pi_valor = math.pi        # 3.14159...
   - **Parámetros**: `x` (tipo: `int` o `float`) - Un número no negativo.
   - **Retorno**: `float` - La raíz cuadrada de `x`.
   - **Lanza**: `ValueError` si `x` es negativo.
+  - **Ejemplo**: `math.sqrt(64)` devuelve `8.0`.
 
 - **`math.pow(x, y)`**:
 
   - **Descripción**: Calcula `x` elevado a la potencia `y` (`x**y`).
   - **Parámetros**: `x` (base), `y` (exponente).
   - **Retorno**: `float` - El resultado de `x` elevado a `y`.
+  - **Ejemplo**: `math.pow(5, 2)` devuelve `25.0`.
 
 - **`math.floor(x)`**:
 
@@ -70,6 +73,7 @@ pi_valor = math.pi        # 3.14159...
   - **Parámetros**: `x` (un entero no negativo).
   - **Retorno**: `int` - El factorial de `x`.
   - **Lanza**: `ValueError` si `x` no es un entero o es negativo.
+  - **Ejemplo**: `math.factorial(5)` (es decir, 5 _ 4 _ 3 _ 2 _ 1) devuelve `120`.
 
 **Formas comunes de importar:**
 
@@ -101,24 +105,34 @@ loteria = random.choice(["rojo", "verde", "azul"])
 
   - **Descripción**: Inicializa el generador de números aleatorios. Al usar la misma semilla (`a`), obtendrás la misma secuencia de números aleatorios, lo cual es útil para que tus resultados sean reproducibles.
   - **Parámetros**: `a` (opcional) - El valor de la semilla. Puede ser un `int`, `str`, `bytes` o `bytearray`. Si se omite o es `None`, se usa una semilla impredecible (ej: la hora actual).
+  - **Ejemplo**:
+    ```python
+    random.seed(10)
+    print(random.random()) # 0.5714025946899135
+    random.seed(10)
+    print(random.random()) # 0.5714025946899135 (mismo resultado)
+    ```
 
 - **`random.random()`**:
 
   - **Descripción**: Devuelve un número de punto flotante aleatorio en el intervalo `[0.0, 1.0)`.
   - **Parámetros**: Ninguno.
   - **Retorno**: `float`.
+  - **Ejemplo**: `random.random()` puede devolver `0.89...`.
 
 - **`random.randint(a, b)`**:
 
   - **Descripción**: Devuelve un número entero aleatorio `N` tal que `a <= N <= b`. Es inclusivo en ambos extremos.
   - **Parámetros**: `a` (límite inferior), `b` (límite superior).
   - **Retorno**: `int`.
+  - **Ejemplo**: `random.randint(1, 6)` puede devolver `4`.
 
 - **`random.uniform(a, b)`**:
 
   - **Descripción**: Devuelve un número de punto flotante aleatorio `N` tal que `a <= N <= b` o `b <= N <= a`.
   - **Parámetros**: `a` (límite inferior), `b` (límite superior).
   - **Retorno**: `float`.
+  - **Ejemplo**: `random.uniform(1, 1.5)` puede devolver `1.34...`.
 
 - **`random.choice(seq)`**:
 
@@ -126,17 +140,25 @@ loteria = random.choice(["rojo", "verde", "azul"])
   - **Parámetros**: `seq` - Una secuencia (lista, tupla, string).
   - **Retorno**: Un elemento del tipo de los contenidos en la secuencia.
   - **Lanza**: `IndexError` si la secuencia está vacía.
+  - **Ejemplo**: `random.choice(['cara', 'cruz'])` puede devolver `'cruz'`.
 
 - **`random.shuffle(x)`**:
 
   - **Descripción**: Mezcla la secuencia `x` en su lugar (la modifica directamente). No devuelve nada.
   - **Parámetros**: `x` - Una secuencia mutable (como una lista).
   - **Retorno**: `None`.
+  - **Ejemplo**:
+    ```python
+    cartas = ['As', 'Rey', 'Reina']
+    random.shuffle(cartas)
+    # la lista 'cartas' ahora podría ser ['Reina', 'As', 'Rey']
+    ```
 
 - **`random.sample(population, k)`**:
   - **Descripción**: Devuelve una lista de longitud `k` con elementos únicos elegidos de la secuencia `population`. No modifica la secuencia original.
   - **Parámetros**: `population` (la secuencia de origen), `k` (el número de elementos a elegir).
   - **Retorno**: `list` - Una nueva lista con los elementos seleccionados.
+  - **Ejemplo**: `random.sample(range(1, 50), 6)` puede devolver `[25, 1, 42, 13, 30, 11]` (una selección para la lotería).
 
 ---
 
