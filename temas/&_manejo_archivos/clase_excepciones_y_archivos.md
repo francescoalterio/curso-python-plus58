@@ -71,40 +71,13 @@ except ValueError as e:
 # Salida: Error: El divisor no puede ser cero. No se puede completar la operación.
 ```
 
-## 3) Creando excepciones personalizadas
-
-Para proyectos más grandes, puedes crear tus propios tipos de excepciones heredando de la clase `Exception`. Esto hace que tu código sea más legible y te permite manejar tus errores específicos de forma más limpia.
-
-```python
-# Definimos nuestra propia clase de error
-class MiErrorDeAplicacion(Exception):
-    """Una excepción base para errores en esta aplicación."""
-    pass
-
-class ErrorDeValidacion(MiErrorDeAplicacion):
-    """Lanzado cuando una validación de datos falla."""
-    pass
-
-def procesar_usuario(nombre):
-    if len(nombre) < 3:
-        raise ErrorDeValidacion("El nombre de usuario debe tener al menos 3 caracteres.")
-    print(f"Usuario '{nombre}' procesado correctamente.")
-
-try:
-    procesar_usuario("Al")
-except ErrorDeValidacion as e:
-    print(f"Error de validación: {e}")
-
-# Salida: Error de validación: El nombre de usuario debe tener al menos 3 caracteres.
-```
-
 ---
 
-## 4) Trabajando con archivos
+## 3) Trabajando con archivos
 
 Python ofrece funciones integradas para leer y escribir archivos. Siempre que abras un archivo, asegúrate de cerrarlo. La forma recomendada y más segura de hacerlo es con la declaración `with`, que cierra el archivo automáticamente, incluso si ocurren errores.
 
-### 4.1. Abrir y leer archivos
+### 3.1. Abrir y leer archivos
 
 ```python
 # Lectura completa del archivo
@@ -127,7 +100,7 @@ with open("datos.txt", mode="r", encoding="utf-8") as f:
     print(lineas)
 ```
 
-### 4.2. Escribir archivos
+### 3.2. Escribir archivos
 
 ```python
 # Sobrescribir el archivo si existe, o crearlo si no
@@ -149,7 +122,7 @@ with open("salida.txt", mode="a", encoding="utf-8") as f:
 - Añadir `"+"` a un modo (ej: `"r+"`, `"w+"`) permite leer y escribir a la vez.
 - Añadir `"b"` (ej: `"rb"`, `"wb"`) abre el archivo en **modo binario**, para imágenes, ejecutables, etc.
 
-### 4.3. Controlando el cursor del archivo: `seek` y `tell`
+### 3.3. Controlando el cursor del archivo: `seek` y `tell`
 
 Puedes controlar en qué parte del archivo lees o escribes con `seek()` y `tell()`.
 
@@ -165,7 +138,7 @@ with open("salida.txt", "r+", encoding="utf-8") as f:
     f.write("INICIO: ") # Sobrescribimos el inicio del archivo
 ```
 
-### 4.4. Manejo de errores en archivos
+### 3.4. Manejo de errores en archivos
 
 ```python
 ruta = "archivo_que_no_existe.txt"
@@ -182,7 +155,7 @@ except Exception as e:
 
 ---
 
-## 5) Buenas prácticas
+## 4) Buenas prácticas
 
 - **Usa `with` siempre**: Garantiza que los archivos se cierren correctamente, liberando recursos del sistema.
 - **Sé específico con las excepciones**: Captura los errores que esperas (`FileNotFoundError`, `ValueError`) en lugar de un `except Exception` genérico.
@@ -191,7 +164,7 @@ except Exception as e:
 
 ---
 
-## 6) Ejercicios propuestos
+## 5) Ejercicios propuestos
 
 1.  **Contador de palabras**: Escribe una función que reciba una ruta de archivo y devuelva el número de palabras que contiene. Maneja el `FileNotFoundError`.
 2.  **Log de eventos**: Crea una función `log(mensaje)` que abra un archivo `eventos.log` en modo `append` (`a`) y añada una línea con la fecha y hora actual seguida del `mensaje`.
