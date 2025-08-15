@@ -20,17 +20,58 @@ Ventajas:
 
 ### 2.1. `math`: funciones matemáticas
 
+El módulo `math` proporciona acceso a funciones matemáticas definidas por el estándar de C. No funciona con números complejos; si los necesitas, usa el módulo `cmath`.
+
 ```python
 import math
 
+# Ejemplo de uso
 raiz = math.sqrt(16)      # 4.0
 potencia = math.pow(2, 3) # 8.0 (float)
-pi = math.pi              # 3.14159...
-entero_abajo = math.floor(3.7)  # 3
-entero_arriba = math.ceil(3.1)  # 4
+pi_valor = math.pi        # 3.14159...
 ```
 
-Formas comunes de importar:
+**Funciones y constantes principales:**
+
+- **`math.pi`**:
+
+  - **Descripción**: Una constante que representa el número Pi (π ≈ 3.14159...).
+  - **Retorno**: `float`.
+
+- **`math.sqrt(x)`**:
+
+  - **Descripción**: Calcula la raíz cuadrada de un número.
+  - **Parámetros**: `x` (tipo: `int` o `float`) - Un número no negativo.
+  - **Retorno**: `float` - La raíz cuadrada de `x`.
+  - **Lanza**: `ValueError` si `x` es negativo.
+
+- **`math.pow(x, y)`**:
+
+  - **Descripción**: Calcula `x` elevado a la potencia `y` (`x**y`).
+  - **Parámetros**: `x` (base), `y` (exponente).
+  - **Retorno**: `float` - El resultado de `x` elevado a `y`.
+
+- **`math.floor(x)`**:
+
+  - **Descripción**: Redondea un número hacia abajo al entero más cercano.
+  - **Parámetros**: `x` (un número).
+  - **Retorno**: `int` - El entero más grande que es menor o igual a `x`.
+  - **Ejemplo**: `math.floor(3.7)` devuelve `3`.
+
+- **`math.ceil(x)`**:
+
+  - **Descripción**: Redondea un número hacia arriba al entero más cercano.
+  - **Parámetros**: `x` (un número).
+  - **Retorno**: `int` - El entero más pequeño que es mayor o igual a `x`.
+  - **Ejemplo**: `math.ceil(3.1)` devuelve `4`.
+
+- **`math.factorial(x)`**:
+  - **Descripción**: Calcula el factorial de un número entero no negativo.
+  - **Parámetros**: `x` (un entero no negativo).
+  - **Retorno**: `int` - El factorial de `x`.
+  - **Lanza**: `ValueError` si `x` no es un entero o es negativo.
+
+**Formas comunes de importar:**
 
 - `import math`: usas el nombre del módulo: `math.sqrt(...)`.
 - `import math as m`: alias corto: `m.sqrt(...)`.
@@ -44,23 +85,58 @@ Buenas prácticas:
 
 ### 2.2. `random`: números aleatorios
 
+Este módulo implementa generadores de números pseudoaleatorios para varias distribuciones.
+
 ```python
 import random
 
-random.random()      # float en [0.0, 1.0)
-random.randint(1, 6) # entero entre 1 y 6 (incluye extremos)
-random.choice(["rojo", "verde", "azul"]) # un elemento de la lista
-
-nums = [1, 2, 3, 4, 5]
-random.shuffle(nums) # mezcla la lista in-place
-
-random.seed(42)      # fija la semilla -> resultados reproducibles
+# Ejemplo de uso
+entero_aleatorio = random.randint(1, 6)
+loteria = random.choice(["rojo", "verde", "azul"])
 ```
 
-Notas:
+**Funciones principales:**
 
-- Usa `seed` cuando quieras reproducibilidad en ejercicios/demos.
-- Evita usar aleatoriedad en pruebas sin fijar semilla (las pruebas se vuelven inestables).
+- **`random.seed(a=None)`**:
+
+  - **Descripción**: Inicializa el generador de números aleatorios. Al usar la misma semilla (`a`), obtendrás la misma secuencia de números aleatorios, lo cual es útil para que tus resultados sean reproducibles.
+  - **Parámetros**: `a` (opcional) - El valor de la semilla. Puede ser un `int`, `str`, `bytes` o `bytearray`. Si se omite o es `None`, se usa una semilla impredecible (ej: la hora actual).
+
+- **`random.random()`**:
+
+  - **Descripción**: Devuelve un número de punto flotante aleatorio en el intervalo `[0.0, 1.0)`.
+  - **Parámetros**: Ninguno.
+  - **Retorno**: `float`.
+
+- **`random.randint(a, b)`**:
+
+  - **Descripción**: Devuelve un número entero aleatorio `N` tal que `a <= N <= b`. Es inclusivo en ambos extremos.
+  - **Parámetros**: `a` (límite inferior), `b` (límite superior).
+  - **Retorno**: `int`.
+
+- **`random.uniform(a, b)`**:
+
+  - **Descripción**: Devuelve un número de punto flotante aleatorio `N` tal que `a <= N <= b` o `b <= N <= a`.
+  - **Parámetros**: `a` (límite inferior), `b` (límite superior).
+  - **Retorno**: `float`.
+
+- **`random.choice(seq)`**:
+
+  - **Descripción**: Devuelve un elemento aleatorio de una secuencia no vacía.
+  - **Parámetros**: `seq` - Una secuencia (lista, tupla, string).
+  - **Retorno**: Un elemento del tipo de los contenidos en la secuencia.
+  - **Lanza**: `IndexError` si la secuencia está vacía.
+
+- **`random.shuffle(x)`**:
+
+  - **Descripción**: Mezcla la secuencia `x` en su lugar (la modifica directamente). No devuelve nada.
+  - **Parámetros**: `x` - Una secuencia mutable (como una lista).
+  - **Retorno**: `None`.
+
+- **`random.sample(population, k)`**:
+  - **Descripción**: Devuelve una lista de longitud `k` con elementos únicos elegidos de la secuencia `population`. No modifica la secuencia original.
+  - **Parámetros**: `population` (la secuencia de origen), `k` (el número de elementos a elegir).
+  - **Retorno**: `list` - Una nueva lista con los elementos seleccionados.
 
 ---
 
