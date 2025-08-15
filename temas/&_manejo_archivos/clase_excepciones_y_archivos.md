@@ -122,37 +122,6 @@ with open("salida.txt", mode="a", encoding="utf-8") as f:
 - Añadir `"+"` a un modo (ej: `"r+"`, `"w+"`) permite leer y escribir a la vez.
 - Añadir `"b"` (ej: `"rb"`, `"wb"`) abre el archivo en **modo binario**, para imágenes, ejecutables, etc.
 
-### 3.3. Controlando el cursor del archivo: `seek` y `tell`
-
-Puedes controlar en qué parte del archivo lees o escribes con `seek()` y `tell()`.
-
-- `f.tell()`: Te dice la posición actual del cursor (en bytes).
-- `f.seek(offset)`: Mueve el cursor a la posición `offset` (en bytes).
-
-```python
-with open("salida.txt", "r+", encoding="utf-8") as f:
-    contenido = f.read()
-    print(f"Posición después de leer: {f.tell()}") # Al final del archivo
-    f.seek(0) # Volvemos al inicio
-    print(f"Posición después de seek(0): {f.tell()}") # En el byte 0
-    f.write("INICIO: ") # Sobrescribimos el inicio del archivo
-```
-
-### 3.4. Manejo de errores en archivos
-
-```python
-ruta = "archivo_que_no_existe.txt"
-try:
-    with open(ruta, "r", encoding="utf-8") as f:
-        print(f.read())
-except FileNotFoundError:
-    print(f"Error: El archivo en la ruta '{ruta}' no fue encontrado.")
-except PermissionError:
-    print("Error: No tienes los permisos necesarios para leer este archivo.")
-except Exception as e:
-    print(f"Ha ocurrido un error inesperado: {e}")
-```
-
 ---
 
 ## 4) Buenas prácticas
