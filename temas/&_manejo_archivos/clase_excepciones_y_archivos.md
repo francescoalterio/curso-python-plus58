@@ -71,13 +71,40 @@ except ValueError as e:
 # Salida: Error: El divisor no puede ser cero. No se puede completar la operación.
 ```
 
+## 3) Creando excepciones personalizadas
+
+Para proyectos más grandes, puedes crear tus propios tipos de excepciones heredando de la clase `Exception`. Esto hace que tu código sea más legible y te permite manejar tus errores específicos de forma más limpia.
+
+```python
+# Definimos nuestra propia clase de error
+class MiErrorDeAplicacion(Exception):
+    """Una excepción base para errores en esta aplicación."""
+    pass
+
+class ErrorDeValidacion(MiErrorDeAplicacion):
+    """Lanzado cuando una validación de datos falla."""
+    pass
+
+def procesar_usuario(nombre):
+    if len(nombre) < 3:
+        raise ErrorDeValidacion("El nombre de usuario debe tener al menos 3 caracteres.")
+    print(f"Usuario '{nombre}' procesado correctamente.")
+
+try:
+    procesar_usuario("Al")
+except ErrorDeValidacion as e:
+    print(f"Error de validación: {e}")
+
+# Salida: Error de validación: El nombre de usuario debe tener al menos 3 caracteres.
+```
+
 ---
 
-## 3) Trabajando con archivos
+## 4) Trabajando con archivos
 
 Python ofrece funciones integradas para leer y escribir archivos. Siempre que abras un archivo, asegúrate de cerrarlo. La forma recomendada y más segura de hacerlo es con la declaración `with`, que cierra el archivo automáticamente, incluso si ocurren errores.
 
-### 3.1. Abrir y leer archivos
+### 4.1. Abrir y leer archivos
 
 ```python
 # Lectura completa del archivo
@@ -100,7 +127,7 @@ with open("datos.txt", mode="r", encoding="utf-8") as f:
     print(lineas)
 ```
 
-### 3.2. Escribir archivos
+### 4.2. Escribir archivos
 
 ```python
 # Sobrescribir el archivo si existe, o crearlo si no
@@ -122,9 +149,201 @@ with open("salida.txt", mode="a", encoding="utf-8") as f:
 - Añadir `"+"` a un modo (ej: `"r+"`, `"w+"`) permite leer y escribir a la vez.
 - Añadir `"b"` (ej: `"rb"`, `"wb"`) abre el archivo en **modo binario**, para imágenes, ejecutables, etc.
 
+### 4.3. Controlando el cursor del archivo: `seek` y `tell`
+
+Puedes controlar en qué parte del archivo lees o escribes con `seek()` y `tell()`.
+
+- `f.tell()`: Te dice la posición actual del cursor (en bytes).
+- `f.seek(offset)`: Mueve el cursor a la posición `offset` (en bytes).
+
+```python
+with open("salida.txt", "r+", encoding="utf-8") as f:
+    contenido = f.read()
+    print(f"Posición después de leer: {f.tell()}") # Al final del archivo
+    f.seek(0) # Volvemos al inicio
+    print(f"Posición después de seek(0): {f.tell()}") # En el byte 0
+    f.write("INICIO: ") # Sobrescribimos el inicio del archivo
+```
+
+### 4.4. Manejo de errores en archivos
+
+```python
+ruta = "archivo_que_no_existe.txt"
+try:
+    with open(ruta, "r", encoding="utf-8") as f:
+        print(f.read())
+except FileNotFoundError:
+    print(f"Error: El archivo en la ruta '{ruta}' no fue encontrado.")
+except PermissionError:
+    print("Error: No tienes los permisos necesarios para leer este archivo.")
+except Exception as e:
+    print(f"Ha ocurrido un error inesperado: {e}")
+```
+
 ---
 
-## 4) Buenas prácticas
+## 4) Ejemplo Práctico: Gestionando un Inventario de Productos en un Archivo .txt
+
+Vamos a aplicar todo lo que hemos aprendido en un ejemplo práctico desde cero. Crearemos un pequeño sistema para gestionar un inventario de productos que se guardará en un archivo `inventario.txt`.
+
+Usaremos un formato simple: cada línea representará un producto y tendrá el nombre y la cantidad separados por una coma.
+**Formato:** `nombre_del_producto,cantidad_en_stock`
+
+### Paso 1: Crear el archivo y guardar el primer producto
+
+Para empezar, crearemos el archivo `inventario.txt` y añadiremos nuestro primer producto. Usaremos el modo `"w"` (escritura), que crea el archivo si no existe y sobrescribe su contenido si ya existe.
+
+```python
+# Definimos el nombre del archivo
+nombre_archivo = "inventario.txt"
+producto_inicial = "Laptop,10"
+
+print(f"Creando el archivo '{nombre_archivo}' y guardando el primer producto...")
+try:
+    with open(nombre_archivo, "w", encoding="utf-8") as f:
+        f.write(producto_inicial + "\n") # \n para añadir un salto de línea
+    print("¡Archivo creado y producto guardado con éxito!")
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+```
+
+**Resultado:** Se creará un archivo llamado `inventario.txt` con el siguiente contenido:
+
+```
+Laptop,10
+```
+
+### Paso 2: Leer y mostrar todos los productos
+
+Ahora, vamos a leer el archivo para ver qué productos tenemos. Usaremos el modo `"r"` (lectura).
+
+```python
+print("\nLeyendo el inventario...")
+try:
+    with open(nombre_archivo, "r", encoding="utf-8") as f:
+        print("--- Inventario Actual ---")
+        for linea in f:
+            # Quitamos espacios en blanco y saltos de línea
+            linea_limpia = linea.strip()
+            if linea_limpia:
+                # Separamos el nombre y la cantidad por la coma
+                nombre, cantidad = linea_limpia.split(',')
+                print(f"Producto: {nombre}, Stock: {cantidad}")
+        print("-------------------------")
+except FileNotFoundError:
+    print(f"Error: El archivo '{nombre_archivo}' no existe.")
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+```
+
+### Paso 3: Agregar nuevos productos
+
+Para añadir más productos sin borrar los existentes, usamos el modo `"a"` (append).
+
+```python
+nuevos_productos = ["Mouse,50", "Teclado,30"]
+
+print("\nAgregando nuevos productos...")
+try:
+    with open(nombre_archivo, "a", encoding="utf-8") as f:
+        for producto in nuevos_productos:
+            f.write(producto + "\n")
+    print("¡Nuevos productos agregados!")
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+```
+
+**Resultado:** El archivo `inventario.txt` ahora contendrá:
+
+```
+Laptop,10
+Mouse,50
+Teclado,30
+```
+
+_Puedes volver a ejecutar el código del Paso 2 para comprobarlo._
+
+### Paso 4: Actualizar la cantidad de un producto
+
+Actualizar una línea específica en un archivo de texto es más complejo, ya que no podemos editar una línea directamente. El proceso es:
+
+1. Leer todas las líneas del archivo y guardarlas en una lista en memoria.
+2. Modificar la línea deseada en esa lista.
+3. Reescribir el archivo completo desde cero con la lista actualizada, usando el modo `"w"`.
+
+```python
+producto_a_actualizar = "Laptop"
+nueva_cantidad = "8"
+
+print(f"\nActualizando el stock de '{producto_a_actualizar}'...")
+lineas_actualizadas = []
+try:
+    # 1. Leemos todo el archivo
+    with open(nombre_archivo, "r", encoding="utf-8") as f:
+        for linea in f:
+            nombre, cantidad = linea.strip().split(',')
+            # 2. Si es el producto que buscamos, cambiamos la cantidad
+            if nombre == producto_a_actualizar:
+                lineas_actualizadas.append(f"{nombre},{nueva_cantidad}\n")
+                print(f"-> Stock de '{nombre}' actualizado a {nueva_cantidad}.")
+            else:
+                lineas_actualizadas.append(linea)
+
+    # 3. Reescribimos el archivo con las líneas actualizadas
+    with open(nombre_archivo, "w", encoding="utf-8") as f:
+        f.writelines(lineas_actualizadas)
+
+    print("¡Actualización completada!")
+
+except FileNotFoundError:
+    print(f"Error: El archivo '{nombre_archivo}' no existe.")
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+```
+
+_Vuelve a ejecutar el código del Paso 2. Verás que el stock de "Laptop" ahora es 8._
+
+### Paso 5: Eliminar un producto
+
+Eliminar un producto sigue una lógica muy parecida a la de actualizar:
+
+1. Leer todas las líneas y guardarlas en una nueva lista.
+2. Omitir (no añadir a la lista) la línea que corresponde al producto que queremos eliminar.
+3. Reescribir el archivo con la nueva lista que ya no contiene el producto.
+
+```python
+producto_a_eliminar = "Mouse"
+
+print(f"\nEliminando el producto '{producto_a_eliminar}'...")
+lineas_filtradas = []
+try:
+    # 1. Leemos y filtramos
+    with open(nombre_archivo, "r", encoding="utf-8") as f:
+        for linea in f:
+            nombre, _ = linea.strip().split(',')
+            # 2. Añadimos a la nueva lista solo si NO es el producto a eliminar
+            if nombre != producto_a_eliminar:
+                lineas_filtradas.append(linea)
+            else:
+                print(f"-> Producto '{nombre}' encontrado y omitido.")
+
+    # 3. Reescribimos el archivo
+    with open(nombre_archivo, "w", encoding="utf-8") as f:
+        f.writelines(lineas_filtradas)
+
+    print("¡Eliminación completada!")
+
+except FileNotFoundError:
+    print(f"Error: El archivo '{nombre_archivo}' no existe.")
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+```
+
+_Si ejecutas el código del Paso 2 una última vez, verás que "Mouse" ya no está en el inventario._
+
+---
+
+## 5) Buenas prácticas
 
 - **Usa `with` siempre**: Garantiza que los archivos se cierren correctamente, liberando recursos del sistema.
 - **Sé específico con las excepciones**: Captura los errores que esperas (`FileNotFoundError`, `ValueError`) en lugar de un `except Exception` genérico.
@@ -133,7 +352,7 @@ with open("salida.txt", mode="a", encoding="utf-8") as f:
 
 ---
 
-## 5) Ejercicios propuestos
+## 6) Ejercicios propuestos
 
 1.  **Contador de palabras**: Escribe una función que reciba una ruta de archivo y devuelva el número de palabras que contiene. Maneja el `FileNotFoundError`.
 2.  **Log de eventos**: Crea una función `log(mensaje)` que abra un archivo `eventos.log` en modo `append` (`a`) y añada una línea con la fecha y hora actual seguida del `mensaje`.
