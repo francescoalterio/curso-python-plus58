@@ -73,6 +73,27 @@ print(f"{perro1.nombre} es un gran amigo.") # Salida: Firulais es un gran amigo.
 
 - La `Clase` es el plano (`Perro`).
 - El `Objeto` es la instancia real (`perro1`, `perro2`).
+
+### Un Momento para `self`: ¿Qué es Exactamente?
+
+Piensa en `self` como la forma que tiene un objeto de hablar de sí mismo.
+
+Cuando creas `perro1`, este objeto tiene su propia memoria. Si le pides que ladre (`perro1.ladrar()`), necesita una forma de acceder a _sus propios_ datos (su nombre "Firulais", su raza "Pastor Alemán").
+
+`self` es esa conexión.
+
+- **Al definir un método:** `def ladrar(self):`
+
+  - Le decimos a Python: "Cualquier objeto que use este método se pasará a sí mismo como primer argumento".
+
+- **Al llamar al método:** `perro1.ladrar()`
+  - Python hace esto por ti en segundo plano: `Perro.ladrar(perro1)`.
+  - El objeto `perro1` se "inyecta" en el método y se convierte en `self`.
+
+Por eso, dentro del método, `self.nombre` se traduce como `perro1.nombre`. Si `perro2` llamara al mismo método, `self` se referiría a `perro2`, y `self.nombre` sería "Chispita".
+
+En resumen: **`self` es el objeto mismo, visto desde dentro de la clase.**
+
 - `self` es la forma que tiene un objeto de referirse a sí mismo. Es como decir "mi" nombre (`self.nombre`) o "mi" raza (`self.raza`).
 
 ---
