@@ -72,18 +72,6 @@ print(texto_modificado)
 
 El ejercicio 2 define una clase llamada TransformadorTexto que permite eliminar todas las vocales de una cadena de texto. Utiliza un método llamado transformar para procesar el texto original y devolver la versión sin vocales.
 
-**Análisis paso a paso:**
-
-1.  **`def transformar_texto(cadena):`**: Define una función que toma una cadena de texto como entrada.
-2.  **`nueva_cadena = ""`**: Inicializa una cadena de texto vacía que se usará para construir el resultado.
-3.  **`vocales = "aeiouAEIOU"`**: Crea una cadena que contiene todas las vocales para facilitar la comprobación.
-4.  **`for caracter in cadena:`**: Inicia un bucle que itera sobre cada `caracter` en la `cadena` de entrada.
-5.  **`if caracter not in vocales:`**: Comprueba si el `caracter` actual **no** se encuentra dentro de la cadena `vocales`.
-6.  **`nueva_cadena += caracter`**: Si el caracter no es una vocal, se añade (concatena) al final de `nueva_cadena`.
-7.  **`return nueva_cadena`**: Después de revisar todos los caracteres, la función devuelve la `nueva_cadena` sin vocales.
-8.  **`texto_original = "..."`**: Se define el texto de entrada.
-9.  **`texto_modificado = transformar_texto(texto_original)`**: Se llama a la función y se guarda el resultado.
-10. **`print(texto_modificado)`**: Imprime el resultado, que será `Hl Mnd, st s n prb`.
 
 </details>
 
