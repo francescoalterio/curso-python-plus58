@@ -290,21 +290,21 @@ El polimorfismo hace tu código súper flexible. Puedes escribir funciones gené
 
 La abstracción consiste en ocultar los detalles complejos y mostrar solo las funcionalidades esenciales. Es como conducir un coche: no necesitas saber cómo funciona el motor por dentro para poder conducirlo. Solo necesitas saber usar el volante, los pedales y la palanca de cambios.
 
-En POO, a menudo creamos **Clases Base Abstractas (ABC)**. Son como "contratos" o "plantillas" que definen qué métodos **deben** tener las clases hijas, pero no dicen **cómo** deben hacerlo.
+En POO, podemos crear clases "plantilla" que definen qué métodos **deben** tener las clases hijas, pero sin decir **cómo** deben hacerlo. Esto actúa como un "contrato": cualquier clase que herede de nuestra plantilla se compromete a implementar esos métodos.
 
-Una clase abstracta no se puede usar para crear objetos directamente. Su único propósito es servir como base para otras clases.
+Una forma de lograr esto en Python es crear un método en la clase padre que lance un error si no es redefinido en la clase hija.
 
 **Ejemplo de Abstracción:**
 
 ```python
-from abc import ABC, abstractmethod
-
 # Creamos un "contrato": cualquier clase que sea una 'Figura'
 # DEBE tener un método para calcular su área.
-class Figura(ABC):
-    @abstractmethod
+class Figura:
     def calcular_area(self):
-        pass # Las clases hijas se encargarán de la lógica.
+        # Si una clase hija no implementa su propio método,
+        # este código se ejecutará y dará un error.
+        # Es nuestra forma de decir: "¡Oye, tienes que crear este método!"
+        raise NotImplementedError("Las clases hijas deben implementar el método 'calcular_area'")
 
 # --- Ahora creamos clases concretas que cumplen el contrato ---
 
@@ -312,7 +312,7 @@ class Circulo(Figura):
     def __init__(self, radio):
         self.radio = radio
 
-    # Estamos obligados a implementar este método.
+    # Estamos obligados a implementar este método para cumplir el "contrato".
     def calcular_area(self):
         return 3.14159 * (self.radio ** 2)
 
@@ -331,9 +331,18 @@ mi_cuadrado = Cuadrado(5)
 print(f"Área del círculo: {mi_circulo.calcular_area()}")
 print(f"Área del cuadrado: {mi_cuadrado.calcular_area()}")
 
-# Esto daría un error, porque no puedes crear un objeto de una clase abstracta.
-# figura_generica = Figura() # ¡ERROR!
+# Si intentáramos usar una clase que no cumple el contrato, fallaría:
+class Triangulo(Figura):
+    def __init__(self, base, altura):
+        self.base = base
+        self.altura = altura
+    # ¡Ups! Olvidamos implementar calcular_area()
+
+# mi_triangulo = Triangulo(10, 5)
+# mi_triangulo.calcular_area() # Esto daría un error NotImplementedError
 ```
+
+La abstracción nos ayuda a diseñar sistemas más robustos, asegurando que ciertos objetos siempre tendrán la funcionalidad que esperamos de ellos.
 
 ---
 
