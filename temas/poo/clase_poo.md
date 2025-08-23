@@ -33,6 +33,26 @@ Vamos a crear nuestra primera "receta" (Clase). Haremos una clase para represent
 **Ejemplo práctico:**
 
 ```python
+class Perro:
+    def __init__(self, nombre_perro, raza_perro):
+        print(f"¡Creando un nuevo perro llamado {nombre_perro}!")
+        self.nombre = nombre_perro
+        self.raza = raza_perro
+
+    def ladrar(self):
+        return f"¡Guau! Soy {self.nombre}, un {self.raza}."
+
+
+perro1 = Perro("Firulais", "Pastor Alemán")
+perro2 = Perro("Chispita", "Chihuahua")
+
+print(perro1.ladrar())
+print(perro2.ladrar())
+
+print(f"{perro1.nombre} es un gran amigo.")
+```
+
+```python
 # Esta es nuestra "receta" o "molde" para crear perros.
 class Perro:
     # 1. El constructor: se ejecuta al crear un nuevo perro.
