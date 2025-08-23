@@ -575,14 +575,19 @@ Este código utiliza una clase `FiltradorUnicos` para eliminar los elementos dup
 ### Ejercicio 13
 
 ```python
-def invertir_diccionario(d):
-    inverso = {}
-    for clave, valor in d.items():
-        inverso[valor] = clave
-    return inverso
+class InversorDiccionario:
+    def __init__(self, diccionario_original):
+        self.diccionario_original = diccionario_original
+    
+    def invertir_diccionario(self):
+        inverso = {}
+        for clave, valor in self.diccionario_original.items():
+            inverso[valor] = clave
+        return inverso
 
 mapa_original = {"a": 1, "b": 2, "c": 3}
-mapa_invertido = invertir_diccionario(mapa_original)
+inversor = InversorDiccionario(mapa_original)
+mapa_invertido = inversor.invertir_diccionario()
 print(mapa_invertido)
 ```
 
@@ -591,16 +596,22 @@ print(mapa_invertido)
 
 **¿Qué hace el código?**
 
-Este código invierte un diccionario, intercambiando sus claves y valores. Asume que todos los valores del diccionario original son únicos.
+Este código utiliza una clase `InversorDiccionario` para invertir un diccionario, intercambiando sus claves y valores. Asume que todos los valores del diccionario original son únicos.
 
 **Análisis paso a paso:**
 
-1.  **`def invertir_diccionario(d):`**: Define una función que toma un diccionario `d`.
-2.  **`inverso = {}`**: Crea un nuevo diccionario vacío para el resultado.
-3.  **`for clave, valor in d.items():`**: Itera sobre cada par clave-valor del diccionario original.
-4.  **`inverso[valor] = clave`**: Asigna una nueva entrada en el diccionario `inverso` donde la clave es el `valor` original y el valor es la `clave` original.
-5.  **`return inverso`**: Devuelve el diccionario invertido.
-6.  **`print(mapa_invertido)`**: Imprime el resultado, que será `{1: 'a', 2: 'b', 3: 'c'}`.
+1.  **`class InversorDiccionario:`**: Define una clase que encapsula la funcionalidad de inversión de diccionarios.
+2.  **`def __init__(self, diccionario_original):`**: Constructor que inicializa el objeto con un diccionario.
+3.  **`self.diccionario_original = diccionario_original`**: Almacena el diccionario como atributo de la instancia.
+4.  **`def invertir_diccionario(self):`**: Define un método que invierte el diccionario.
+5.  **`inverso = {}`**: Crea un nuevo diccionario vacío para el resultado.
+6.  **`for clave, valor in self.diccionario_original.items():`**: Itera sobre cada par clave-valor del diccionario almacenado en el objeto.
+7.  **`inverso[valor] = clave`**: Asigna una nueva entrada en el diccionario `inverso` donde la clave es el `valor` original y el valor es la `clave` original.
+8.  **`return inverso`**: Devuelve el diccionario invertido.
+9.  **`mapa_original = {"a": 1, "b": 2, "c": 3}`**: Se crea un diccionario de ejemplo.
+10. **`inversor = InversorDiccionario(mapa_original)`**: Se crea una instancia de la clase con el diccionario.
+11. **`mapa_invertido = inversor.invertir_diccionario()`**: Se llama al método del objeto.
+12. **`print(mapa_invertido)`**: Imprime el resultado, que será `{1: 'a', 2: 'b', 3: 'c'}`.
 
 </details>
 
@@ -609,18 +620,24 @@ Este código invierte un diccionario, intercambiando sus claves y valores. Asume
 ### Ejercicio 14
 
 ```python
-def verificar_unicidad(elementos):
-    vistos = []
-    for elemento in elementos:
-        if elemento in vistos:
-            return False
-        vistos.append(elemento)
-    return True
+class VerificadorUnicidad:
+    def __init__(self, elementos):
+        self.elementos = elementos
+    
+    def verificar_elementos_unicos(self):
+        vistos = []
+        for elemento in self.elementos:
+            if elemento in vistos:
+                return False
+            vistos.append(elemento)
+        return True
 
 lista1 = [1, 2, 3, 4, 5]
 lista2 = [1, 2, 3, 2, 4]
-print(verificar_unicidad(lista1))
-print(verificar_unicidad(lista2))
+verificador1 = VerificadorUnicidad(lista1)
+verificador2 = VerificadorUnicidad(lista2)
+print(verificador1.verificar_elementos_unicos())
+print(verificador2.verificar_elementos_unicos())
 ```
 
 <details>
@@ -628,18 +645,25 @@ print(verificar_unicidad(lista2))
 
 **¿Qué hace el código?**
 
-Este código comprueba si todos los elementos de una lista son únicos. Devuelve `True` si no hay duplicados y `False` si encuentra al menos un duplicado.
+Este código utiliza una clase `VerificadorUnicidad` para comprobar si todos los elementos de una lista son únicos. Devuelve `True` si no hay duplicados y `False` si encuentra al menos un duplicado.
 
 **Análisis paso a paso:**
 
-1.  **`def verificar_unicidad(elementos):`**: Define una función que toma una lista.
-2.  **`vistos = []`**: Crea una lista para registrar los elementos que ya se han encontrado.
-3.  **`for elemento in elementos:`**: Itera sobre cada `elemento` de la lista de entrada.
-4.  **`if elemento in vistos:`**: Comprueba si el `elemento` actual ya está en la lista `vistos`.
-5.  **`return False`**: Si el elemento ya ha sido visto, significa que es un duplicado, por lo que la función termina inmediatamente y devuelve `False`.
-6.  **`vistos.append(elemento)`**: Si el elemento no es un duplicado, se añade a la lista `vistos`.
-7.  **`return True`**: Si el bucle termina sin encontrar duplicados, significa que todos los elementos son únicos, y la función devuelve `True`.
-8.  **`print(...)`**: Imprime los resultados de las llamadas, que serán `True` para `lista1` y `False` para `lista2`.
+1.  **`class VerificadorUnicidad:`**: Define una clase que encapsula la funcionalidad de verificación de unicidad.
+2.  **`def __init__(self, elementos):`**: Constructor que inicializa el objeto con una lista de elementos.
+3.  **`self.elementos = elementos`**: Almacena la lista como atributo de la instancia.
+4.  **`def verificar_elementos_unicos(self):`**: Define un método que verifica si los elementos son únicos.
+5.  **`vistos = []`**: Crea una lista para registrar los elementos que ya se han encontrado.
+6.  **`for elemento in self.elementos:`**: Itera sobre cada `elemento` de la lista almacenada en el objeto.
+7.  **`if elemento in vistos:`**: Comprueba si el `elemento` actual ya está en la lista `vistos`.
+8.  **`return False`**: Si el elemento ya ha sido visto, significa que es un duplicado, por lo que el método termina inmediatamente y devuelve `False`.
+9.  **`vistos.append(elemento)`**: Si el elemento no es un duplicado, se añade a la lista `vistos`.
+10. **`return True`**: Si el bucle termina sin encontrar duplicados, significa que todos los elementos son únicos, y el método devuelve `True`.
+11. **`lista1 = [1, 2, 3, 4, 5]`**: Se crea una lista sin duplicados.
+12. **`lista2 = [1, 2, 3, 2, 4]`**: Se crea una lista con duplicados.
+13. **`verificador1 = VerificadorUnicidad(lista1)`**: Se crea una instancia con la primera lista.
+14. **`verificador2 = VerificadorUnicidad(lista2)`**: Se crea una instancia con la segunda lista.
+15. **`print(...)`**: Imprime los resultados, que serán `True` para `lista1` y `False` para `lista2`.
 
 </details>
 
@@ -648,17 +672,22 @@ Este código comprueba si todos los elementos de una lista son únicos. Devuelve
 ### Ejercicio 15
 
 ```python
-def procesar_frase(frase):
-    palabras = frase.split(' ')
-    resultado = []
-    for palabra in palabras:
-        if palabra:
-            palabra_modificada = palabra[0].upper() + palabra[1:]
-            resultado.append(palabra_modificada)
-    return ' '.join(resultado)
+class ProcesadorFrase:
+    def __init__(self, frase):
+        self.frase = frase
+    
+    def capitalizar_palabras(self):
+        palabras = self.frase.split(' ')
+        resultado = []
+        for palabra in palabras:
+            if palabra:
+                palabra_modificada = palabra[0].upper() + palabra[1:]
+                resultado.append(palabra_modificada)
+        return ' '.join(resultado)
 
 texto = "hola mundo desde python"
-texto_capitalizado = procesar_frase(texto)
+procesador = ProcesadorFrase(texto)
+texto_capitalizado = procesador.capitalizar_palabras()
 print(texto_capitalizado)
 ```
 
@@ -667,19 +696,25 @@ print(texto_capitalizado)
 
 **¿Qué hace el código?**
 
-Este código capitaliza la primera letra de cada palabra en una frase.
+Este código utiliza una clase `ProcesadorFrase` para capitalizar la primera letra de cada palabra en una frase.
 
 **Análisis paso a paso:**
 
-1.  **`def procesar_frase(frase):`**: Define una función que toma una frase (cadena de texto).
-2.  **`palabras = frase.split(' ')`**: Divide la frase en una lista de palabras usando el espacio como separador.
-3.  **`resultado = []`**: Crea una lista vacía para guardar las palabras modificadas.
-4.  **`for palabra in palabras:`**: Itera sobre cada `palabra` en la lista de palabras.
-5.  **`if palabra:`**: Comprueba que la palabra no esté vacía (esto puede ocurrir si hay múltiples espacios juntos).
-6.  **`palabra_modificada = palabra[0].upper() + palabra[1:]`**: Crea una nueva palabra tomando el primer caracter (`palabra[0]`), convirtiéndolo a mayúscula (`.upper()`), y concatenándolo con el resto de la palabra (`palabra[1:]`).
-7.  **`resultado.append(palabra_modificada)`**: Añade la palabra capitalizada a la lista `resultado`.
-8.  **`return ' '.join(resultado)`**: Une las palabras de la lista `resultado` en una sola cadena, separándolas con un espacio.
-9.  **`print(texto_capitalizado)`**: Imprime el resultado, que será `Hola Mundo Desde Python`.
+1.  **`class ProcesadorFrase:`**: Define una clase que encapsula la funcionalidad de procesamiento de frases.
+2.  **`def __init__(self, frase):`**: Constructor que inicializa el objeto con una frase.
+3.  **`self.frase = frase`**: Almacena la frase como atributo de la instancia.
+4.  **`def capitalizar_palabras(self):`**: Define un método que capitaliza las palabras.
+5.  **`palabras = self.frase.split(' ')`**: Divide la frase almacenada en el objeto en una lista de palabras usando el espacio como separador.
+6.  **`resultado = []`**: Crea una lista vacía para guardar las palabras modificadas.
+7.  **`for palabra in palabras:`**: Itera sobre cada `palabra` en la lista de palabras.
+8.  **`if palabra:`**: Comprueba que la palabra no esté vacía (esto puede ocurrir si hay múltiples espacios juntos).
+9.  **`palabra_modificada = palabra[0].upper() + palabra[1:]`**: Crea una nueva palabra tomando el primer caracter (`palabra[0]`), convirtiéndolo a mayúscula (`.upper()`), y concatenándolo con el resto de la palabra (`palabra[1:]`).
+10. **`resultado.append(palabra_modificada)`**: Añade la palabra capitalizada a la lista `resultado`.
+11. **`return ' '.join(resultado)`**: Une las palabras de la lista `resultado` en una sola cadena, separándolas con un espacio.
+12. **`texto = "hola mundo desde python"`**: Se crea una frase de ejemplo.
+13. **`procesador = ProcesadorFrase(texto)`**: Se crea una instancia de la clase con la frase.
+14. **`texto_capitalizado = procesador.capitalizar_palabras()`**: Se llama al método del objeto.
+15. **`print(texto_capitalizado)`**: Imprime el resultado, que será `Hola Mundo Desde Python`.
 
 </details>
 
@@ -688,16 +723,21 @@ Este código capitaliza la primera letra de cada palabra en una frase.
 ### Ejercicio 16
 
 ```python
-def encontrar_mas_larga(texto):
-    palabras = texto.split()
-    mas_larga = ""
-    for palabra in palabras:
-        if len(palabra) > len(mas_larga):
-            mas_larga = palabra
-    return mas_larga
+class BuscadorPalabraLarga:
+    def __init__(self, texto):
+        self.texto = texto
+    
+    def encontrar_palabra_mas_larga(self):
+        palabras = self.texto.split()
+        mas_larga = ""
+        for palabra in palabras:
+            if len(palabra) > len(mas_larga):
+                mas_larga = palabra
+        return mas_larga
 
 frase = "encuentra la palabra mas larga aqui"
-palabra_larga = encontrar_mas_larga(frase)
+buscador = BuscadorPalabraLarga(frase)
+palabra_larga = buscador.encontrar_palabra_mas_larga()
 print(palabra_larga)
 ```
 
@@ -706,18 +746,24 @@ print(palabra_larga)
 
 **¿Qué hace el código?**
 
-Este código encuentra y devuelve la palabra más larga en una frase.
+Este código utiliza una clase `BuscadorPalabraLarga` para encontrar y devolver la palabra más larga en una frase.
 
 **Análisis paso a paso:**
 
-1.  **`def encontrar_mas_larga(texto):`**: Define una función que toma una cadena de texto.
-2.  **`palabras = texto.split()`**: Divide el texto en una lista de palabras.
-3.  **`mas_larga = ""`**: Inicializa una variable para guardar la palabra más larga encontrada hasta el momento. Se inicia como una cadena vacía.
-4.  **`for palabra in palabras:`**: Itera sobre cada `palabra` de la lista.
-5.  **`if len(palabra) > len(mas_larga):`**: Compara la longitud de la palabra actual con la longitud de la palabra más larga guardada.
-6.  **`mas_larga = palabra`**: Si la palabra actual es más larga, se actualiza la variable `mas_larga`.
-7.  **`return mas_larga`**: Devuelve la palabra más larga encontrada después de revisar toda la frase.
-8.  **`print(palabra_larga)`**: Imprime el resultado, que será `encuentra`.
+1.  **`class BuscadorPalabraLarga:`**: Define una clase que encapsula la funcionalidad de búsqueda de palabras largas.
+2.  **`def __init__(self, texto):`**: Constructor que inicializa el objeto con una cadena de texto.
+3.  **`self.texto = texto`**: Almacena el texto como atributo de la instancia.
+4.  **`def encontrar_palabra_mas_larga(self):`**: Define un método que encuentra la palabra más larga.
+5.  **`palabras = self.texto.split()`**: Divide el texto almacenado en el objeto en una lista de palabras.
+6.  **`mas_larga = ""`**: Inicializa una variable para guardar la palabra más larga encontrada hasta el momento. Se inicia como una cadena vacía.
+7.  **`for palabra in palabras:`**: Itera sobre cada `palabra` de la lista.
+8.  **`if len(palabra) > len(mas_larga):`**: Compara la longitud de la palabra actual con la longitud de la palabra más larga guardada.
+9.  **`mas_larga = palabra`**: Si la palabra actual es más larga, se actualiza la variable `mas_larga`.
+10. **`return mas_larga`**: Devuelve la palabra más larga encontrada después de revisar toda la frase.
+11. **`frase = "encuentra la palabra mas larga aqui"`**: Se crea una frase de ejemplo.
+12. **`buscador = BuscadorPalabraLarga(frase)`**: Se crea una instancia de la clase con el texto.
+13. **`palabra_larga = buscador.encontrar_palabra_mas_larga()`**: Se llama al método del objeto.
+14. **`print(palabra_larga)`**: Imprime el resultado, que será `encuentra`.
 
 </details>
 
@@ -726,16 +772,21 @@ Este código encuentra y devuelve la palabra más larga en una frase.
 ### Ejercicio 17
 
 ```python
-def generar_serie(n):
-    serie = []
-    a, b = 0, 1
-    while len(serie) < n:
-        serie.append(a)
-        a, b = b, a + b
-    return serie
+class GeneradorFibonacci:
+    def __init__(self, n):
+        self.n = n
+    
+    def generar_serie(self):
+        serie = []
+        a, b = 0, 1
+        while len(serie) < self.n:
+            serie.append(a)
+            a, b = b, a + b
+        return serie
 
 cantidad = 10
-fibonacci = generar_serie(cantidad)
+generador = GeneradorFibonacci(cantidad)
+fibonacci = generador.generar_serie()
 print(fibonacci)
 ```
 
@@ -744,18 +795,24 @@ print(fibonacci)
 
 **¿Qué hace el código?**
 
-Este código genera los primeros `n` números de la secuencia de Fibonacci.
+Este código utiliza una clase `GeneradorFibonacci` para generar los primeros `n` números de la secuencia de Fibonacci.
 
 **Análisis paso a paso:**
 
-1.  **`def generar_serie(n):`**: Define una función que toma un número `n` que indica cuántos términos generar.
-2.  **`serie = []`**: Crea una lista vacía para almacenar la secuencia.
-3.  **`a, b = 0, 1`**: Inicializa las dos primeras variables de la secuencia de Fibonacci.
-4.  **`while len(serie) < n:`**: El bucle continúa mientras la longitud de la `serie` sea menor que `n`.
-5.  **`serie.append(a)`**: Añade el valor actual de `a` a la lista.
-6.  **`a, b = b, a + b`**: Actualiza los valores. El nuevo `a` toma el valor de `b`, y el nuevo `b` toma el valor de la suma de los antiguos `a` y `b`. Esto genera el siguiente número de la secuencia.
-7.  **`return serie`**: Devuelve la lista con la secuencia generada.
-8.  **`print(fibonacci)`**: Imprime el resultado, que será `[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]`.
+1.  **`class GeneradorFibonacci:`**: Define una clase que encapsula la funcionalidad de generación de secuencias de Fibonacci.
+2.  **`def __init__(self, n):`**: Constructor que inicializa el objeto con un número `n` que indica cuántos términos generar.
+3.  **`self.n = n`**: Almacena el número de términos como atributo de la instancia.
+4.  **`def generar_serie(self):`**: Define un método que genera la secuencia de Fibonacci.
+5.  **`serie = []`**: Crea una lista vacía para almacenar la secuencia.
+6.  **`a, b = 0, 1`**: Inicializa las dos primeras variables de la secuencia de Fibonacci.
+7.  **`while len(serie) < self.n:`**: El bucle continúa mientras la longitud de la `serie` sea menor que `self.n`.
+8.  **`serie.append(a)`**: Añade el valor actual de `a` a la lista.
+9.  **`a, b = b, a + b`**: Actualiza los valores. El nuevo `a` toma el valor de `b`, y el nuevo `b` toma el valor de la suma de los antiguos `a` y `b`. Esto genera el siguiente número de la secuencia.
+10. **`return serie`**: Devuelve la lista con la secuencia generada.
+11. **`cantidad = 10`**: Se define la cantidad de términos a generar.
+12. **`generador = GeneradorFibonacci(cantidad)`**: Se crea una instancia de la clase con la cantidad.
+13. **`fibonacci = generador.generar_serie()`**: Se llama al método del objeto.
+14. **`print(fibonacci)`**: Imprime el resultado, que será `[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]`.
 
 </details>
 
@@ -764,14 +821,19 @@ Este código genera los primeros `n` números de la secuencia de Fibonacci.
 ### Ejercicio 18
 
 ```python
-def sumar_valores_mapa(mapa):
-    total = 0
-    for clave in mapa:
-        total += mapa[clave]
-    return total
+class SumadorValoresMapa:
+    def __init__(self, mapa):
+        self.mapa = mapa
+    
+    def sumar_valores(self):
+        total = 0
+        for clave in self.mapa:
+            total += self.mapa[clave]
+        return total
 
 datos_mapa = {"item1": 10, "item2": 25, "item3": 15}
-suma_total = sumar_valores_mapa(datos_mapa)
+sumador = SumadorValoresMapa(datos_mapa)
+suma_total = sumador.sumar_valores()
 print(suma_total)
 ```
 
@@ -780,16 +842,22 @@ print(suma_total)
 
 **¿Qué hace el código?**
 
-Este código calcula la suma de todos los valores numéricos en un diccionario.
+Este código utiliza una clase `SumadorValoresMapa` para calcular la suma de todos los valores numéricos en un diccionario.
 
 **Análisis paso a paso:**
 
-1.  **`def sumar_valores_mapa(mapa):`**: Define una función que toma un diccionario.
-2.  **`total = 0`**: Inicializa una variable `total` para acumular la suma.
-3.  **`for clave in mapa:`**: Itera sobre las claves del diccionario.
-4.  **`total += mapa[clave]`**: Para cada `clave`, accede a su valor correspondiente en el `mapa` (`mapa[clave]`) y lo suma al `total`.
-5.  **`return total`**: Devuelve la suma total de los valores.
-6.  **`print(suma_total)`**: Imprime el resultado, que será `50` (10 + 25 + 15).
+1.  **`class SumadorValoresMapa:`**: Define una clase que encapsula la funcionalidad de suma de valores de diccionarios.
+2.  **`def __init__(self, mapa):`**: Constructor que inicializa el objeto con un diccionario.
+3.  **`self.mapa = mapa`**: Almacena el diccionario como atributo de la instancia.
+4.  **`def sumar_valores(self):`**: Define un método que suma todos los valores del diccionario.
+5.  **`total = 0`**: Inicializa una variable `total` para acumular la suma.
+6.  **`for clave in self.mapa:`**: Itera sobre las claves del diccionario almacenado en el objeto.
+7.  **`total += self.mapa[clave]`**: Para cada `clave`, accede a su valor correspondiente en el diccionario (`self.mapa[clave]`) y lo suma al `total`.
+8.  **`return total`**: Devuelve la suma total de los valores.
+9.  **`datos_mapa = {"item1": 10, "item2": 25, "item3": 15}`**: Se crea un diccionario de ejemplo.
+10. **`sumador = SumadorValoresMapa(datos_mapa)`**: Se crea una instancia de la clase con el diccionario.
+11. **`suma_total = sumador.sumar_valores()`**: Se llama al método del objeto.
+12. **`print(suma_total)`**: Imprime el resultado, que será `50` (10 + 25 + 15).
 
 </details>
 
@@ -798,15 +866,21 @@ Este código calcula la suma de todos los valores numéricos en un diccionario.
 ### Ejercicio 19
 
 ```python
-def filtrar_numeros(lista, umbral):
-    filtrados = []
-    for numero in lista:
-        if numero > umbral:
-            filtrados.append(numero)
-    return filtrados
+class FiltradorNumeros:
+    def __init__(self, lista, umbral):
+        self.lista = lista
+        self.umbral = umbral
+    
+    def filtrar_mayores_que_umbral(self):
+        filtrados = []
+        for numero in self.lista:
+            if numero > self.umbral:
+                filtrados.append(numero)
+        return filtrados
 
 numeros = [1, 10, 5, 25, 15, 30]
-mayores_que_12 = filtrar_numeros(numeros, 12)
+filtrador = FiltradorNumeros(numeros, 12)
+mayores_que_12 = filtrador.filtrar_mayores_que_umbral()
 print(mayores_que_12)
 ```
 
@@ -815,17 +889,24 @@ print(mayores_que_12)
 
 **¿Qué hace el código?**
 
-Este código filtra una lista de números, devolviendo una nueva lista que contiene solo aquellos números que son mayores que un `umbral` especificado.
+Este código utiliza una clase `FiltradorNumeros` para filtrar una lista de números, devolviendo una nueva lista que contiene solo aquellos números que son mayores que un `umbral` especificado.
 
 **Análisis paso a paso:**
 
-1.  **`def filtrar_numeros(lista, umbral):`**: Define una función que toma una lista de números y un valor `umbral`.
-2.  **`filtrados = []`**: Crea una lista vacía para almacenar los números que pasen el filtro.
-3.  **`for numero in lista:`**: Itera sobre cada `numero` en la lista de entrada.
-4.  **`if numero > umbral:`**: Comprueba si el `numero` actual es estrictamente mayor que el `umbral`.
-5.  **`filtrados.append(numero)`**: Si la condición es verdadera, añade el `numero` a la lista `filtrados`.
-6.  **`return filtrados`**: Devuelve la lista con los números filtrados.
-7.  **`print(mayores_que_12)`**: Imprime el resultado, que será `[25, 15, 30]`.
+1.  **`class FiltradorNumeros:`**: Define una clase que encapsula la funcionalidad de filtrado de números.
+2.  **`def __init__(self, lista, umbral):`**: Constructor que inicializa el objeto con una lista de números y un valor umbral.
+3.  **`self.lista = lista`**: Almacena la lista como atributo de la instancia.
+4.  **`self.umbral = umbral`**: Almacena el umbral como atributo de la instancia.
+5.  **`def filtrar_mayores_que_umbral(self):`**: Define un método que filtra los números mayores que el umbral.
+6.  **`filtrados = []`**: Crea una lista vacía para almacenar los números que pasen el filtro.
+7.  **`for numero in self.lista:`**: Itera sobre cada `numero` en la lista almacenada en el objeto.
+8.  **`if numero > self.umbral:`**: Comprueba si el `numero` actual es estrictamente mayor que el umbral almacenado en el objeto.
+9.  **`filtrados.append(numero)`**: Si la condición es verdadera, añade el `numero` a la lista `filtrados`.
+10. **`return filtrados`**: Devuelve la lista con los números filtrados.
+11. **`numeros = [1, 10, 5, 25, 15, 30]`**: Se crea una lista de números.
+12. **`filtrador = FiltradorNumeros(numeros, 12)`**: Se crea una instancia de la clase con la lista y el umbral.
+13. **`mayores_que_12 = filtrador.filtrar_mayores_que_umbral()`**: Se llama al método del objeto.
+14. **`print(mayores_que_12)`**: Imprime el resultado, que será `[25, 15, 30]`.
 
 </details>
 
@@ -834,15 +915,21 @@ Este código filtra una lista de números, devolviendo una nueva lista que conti
 ### Ejercicio 20
 
 ```python
-def combinar_mapas(mapa1, mapa2):
-    combinado = mapa1.copy()
-    for clave, valor in mapa2.items():
-        combinado[clave] = valor
-    return combinado
+class CombinadorMapas:
+    def __init__(self, mapa1, mapa2):
+        self.mapa1 = mapa1
+        self.mapa2 = mapa2
+    
+    def combinar_diccionarios(self):
+        combinado = self.mapa1.copy()
+        for clave, valor in self.mapa2.items():
+            combinado[clave] = valor
+        return combinado
 
 dicc1 = {'a': 1, 'b': 2}
 dicc2 = {'b': 3, 'c': 4}
-resultado_final = combinar_mapas(dicc1, dicc2)
+combinador = CombinadorMapas(dicc1, dicc2)
+resultado_final = combinador.combinar_diccionarios()
 print(resultado_final)
 ```
 
@@ -851,18 +938,26 @@ print(resultado_final)
 
 **¿Qué hace el código?**
 
-Este código combina o fusiona dos diccionarios en uno nuevo. Si una clave existe en ambos diccionarios, el valor del segundo diccionario prevalece.
+Este código utiliza una clase `CombinadorMapas` para combinar o fusionar dos diccionarios en uno nuevo. Si una clave existe en ambos diccionarios, el valor del segundo diccionario prevalece.
 
 **Análisis paso a paso:**
 
-1.  **`def combinar_mapas(mapa1, mapa2):`**: Define una función que toma dos diccionarios.
-2.  **`combinado = mapa1.copy()`**: Crea una copia del primer diccionario (`mapa1`) para no modificar el original.
-3.  **`for clave, valor in mapa2.items():`**: Itera sobre los pares clave-valor del segundo diccionario (`mapa2`).
-4.  **`combinado[clave] = valor`**: Asigna el par clave-valor del `mapa2` al diccionario `combinado`. Si la `clave` ya existe en `combinado`, su valor será sobrescrito. Si no existe, se añadirá como una nueva entrada.
+1.  **`class CombinadorMapas:`**: Define una clase que encapsula la funcionalidad de combinación de diccionarios.
+2.  **`def __init__(self, mapa1, mapa2):`**: Constructor que inicializa el objeto con dos diccionarios.
+3.  **`self.mapa1 = mapa1`**: Almacena el primer diccionario como atributo de la instancia.
+4.  **`self.mapa2 = mapa2`**: Almacena el segundo diccionario como atributo de la instancia.
+5.  **`def combinar_diccionarios(self):`**: Define un método que combina los diccionarios.
+6.  **`combinado = self.mapa1.copy()`**: Crea una copia del primer diccionario almacenado en el objeto para no modificar el original.
+7.  **`for clave, valor in self.mapa2.items():`**: Itera sobre los pares clave-valor del segundo diccionario almacenado en el objeto.
+8.  **`combinado[clave] = valor`**: Asigna el par clave-valor del segundo diccionario al diccionario `combinado`. Si la `clave` ya existe en `combinado`, su valor será sobrescrito. Si no existe, se añadirá como una nueva entrada.
     - `combinado` empieza como `{'a': 1, 'b': 2}`.
-    - Primera iteración de `mapa2`: `clave='b'`, `valor=3`. `combinado` se convierte en `{'a': 1, 'b': 3}`.
-    - Segunda iteración de `mapa2`: `clave='c'`, `valor=4`. `combinado` se convierte en `{'a': 1, 'b': 3, 'c': 4}`.
-5.  **`return combinado`**: Devuelve el diccionario fusionado.
-6.  **`print(resultado_final)`**: Imprime el resultado, que será `{'a': 1, 'b': 3, 'c': 4}`.
+    - Primera iteración: `clave='b'`, `valor=3`. `combinado` se convierte en `{'a': 1, 'b': 3}`.
+    - Segunda iteración: `clave='c'`, `valor=4`. `combinado` se convierte en `{'a': 1, 'b': 3, 'c': 4}`.
+9.  **`return combinado`**: Devuelve el diccionario fusionado.
+10. **`dicc1 = {'a': 1, 'b': 2}`**: Se crea el primer diccionario.
+11. **`dicc2 = {'b': 3, 'c': 4}`**: Se crea el segundo diccionario.
+12. **`combinador = CombinadorMapas(dicc1, dicc2)`**: Se crea una instancia de la clase con ambos diccionarios.
+13. **`resultado_final = combinador.combinar_diccionarios()`**: Se llama al método del objeto.
+14. **`print(resultado_final)`**: Imprime el resultado, que será `{'a': 1, 'b': 3, 'c': 4}`.
 
 </details>
