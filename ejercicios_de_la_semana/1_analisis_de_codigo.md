@@ -47,16 +47,21 @@ Este código calcula la suma de todos los números pares en una lista.
 ### Ejercicio 2
 
 ```python
-def transformar_texto(cadena):
-    nueva_cadena = ""
-    vocales = "aeiouAEIOU"
-    for caracter in cadena:
-        if caracter not in vocales:
-            nueva_cadena += caracter
-    return nueva_cadena
+class TransformadorTexto:
+    def __init__(self, texto):
+        self.texto = texto
+
+    def transformar(self):
+        nueva_cadena = ""
+        vocales = "aeiouAEIOU"
+        for caracter in self.texto:
+            if caracter not in vocales:
+                nueva_cadena += caracter
+        return nueva_cadena
 
 texto_original = "Hola Mundo, esto es una prueba"
-texto_modificado = transformar_texto(texto_original)
+transformador = TransformadorTexto(texto_original)
+texto_modificado = transformador.transformar()
 print(texto_modificado)
 ```
 
