@@ -9,15 +9,20 @@ Una vez que tengas una idea, haz clic en el desplegable para ver la explicación
 ### Ejercicio 1
 
 ```python
-def procesar_datos(lista_numeros):
-    resultado = 0
-    for item in lista_numeros:
-        if item % 2 == 0:
-            resultado += item
-    return resultado
+class ProcesadorDatos:
+    def __init__(self, lista_numeros):
+        self.lista_numeros = lista_numeros
+    
+    def sumar_pares(self):
+        resultado = 0
+        for item in self.lista_numeros:
+            if item % 2 == 0:
+                resultado += item
+        return resultado
 
 datos = [10, 21, 30, 45, 50]
-valor_final = procesar_datos(datos)
+procesador = ProcesadorDatos(datos)
+valor_final = procesador.sumar_pares()
 print(valor_final)
 ```
 
@@ -26,19 +31,23 @@ print(valor_final)
 
 **¿Qué hace el código?**
 
-Este código calcula la suma de todos los números pares en una lista.
+Este código utiliza una clase `ProcesadorDatos` para calcular la suma de todos los números pares en una lista.
 
 **Análisis paso a paso:**
 
-1.  **`def procesar_datos(lista_numeros):`**: Define una función que acepta una lista de números como argumento.
-2.  **`resultado = 0`**: Inicializa una variable `resultado` en 0. Esta variable actuará como un acumulador.
-3.  **`for item in lista_numeros:`**: Inicia un bucle que recorre cada número (`item`) en la lista proporcionada.
-4.  **`if item % 2 == 0:`**: Dentro del bucle, comprueba si el número actual (`item`) es par. El operador módulo (`%`) devuelve el resto de una división. Si un número dividido por 2 tiene un resto de 0, significa que es par.
-5.  **`resultado += item`**: Si la condición es verdadera (el número es par), se añade ese número al valor actual de `resultado`.
-6.  **`return resultado`**: Una vez que el bucle ha recorrido toda la lista, la función devuelve el valor final acumulado en `resultado`.
-7.  **`datos = [10, 21, 30, 45, 50]`**: Se crea una lista de ejemplo.
-8.  **`valor_final = procesar_datos(datos)`**: Se llama a la función con la lista `datos` y el valor devuelto se guarda en `valor_final`. En este caso, sumará 10 + 30 + 50.
-9.  **`print(valor_final)`**: Imprime el resultado final, que será `90`.
+1.  **`class ProcesadorDatos:`**: Define una clase que encapsula la funcionalidad de procesamiento de datos.
+2.  **`def __init__(self, lista_numeros):`**: Constructor que inicializa el objeto con una lista de números.
+3.  **`self.lista_numeros = lista_numeros`**: Almacena la lista como atributo de la instancia.
+4.  **`def sumar_pares(self):`**: Define un método que calcula la suma de números pares.
+5.  **`resultado = 0`**: Inicializa una variable `resultado` en 0. Esta variable actuará como un acumulador.
+6.  **`for item in self.lista_numeros:`**: Inicia un bucle que recorre cada número (`item`) en la lista almacenada en el objeto.
+7.  **`if item % 2 == 0:`**: Dentro del bucle, comprueba si el número actual (`item`) es par. El operador módulo (`%`) devuelve el resto de una división. Si un número dividido por 2 tiene un resto de 0, significa que es par.
+8.  **`resultado += item`**: Si la condición es verdadera (el número es par), se añade ese número al valor actual de `resultado`.
+9.  **`return resultado`**: Una vez que el bucle ha recorrido toda la lista, el método devuelve el valor final acumulado en `resultado`.
+10. **`datos = [10, 21, 30, 45, 50]`**: Se crea una lista de ejemplo.
+11. **`procesador = ProcesadorDatos(datos)`**: Se crea una instancia de la clase `ProcesadorDatos` con la lista `datos`.
+12. **`valor_final = procesador.sumar_pares()`**: Se llama al método `sumar_pares()` del objeto y el valor devuelto se guarda en `valor_final`. En este caso, sumará 10 + 30 + 50.
+13. **`print(valor_final)`**: Imprime el resultado final, que será `90`.
 
 </details>
 
@@ -80,14 +89,19 @@ El ejercicio 2 define una clase llamada TransformadorTexto que permite eliminar 
 ### Ejercicio 3
 
 ```python
-def manipular_lista(elementos):
-    final = []
-    for i in range(len(elementos) - 1, -1, -1):
-        final.append(elementos[i])
-    return final
+class ManipuladorLista:
+    def __init__(self, elementos):
+        self.elementos = elementos
+    
+    def invertir(self):
+        final = []
+        for i in range(len(self.elementos) - 1, -1, -1):
+            final.append(self.elementos[i])
+        return final
 
 mi_lista = ["a", "b", "c", "d"]
-lista_invertida = manipular_lista(mi_lista)
+manipulador = ManipuladorLista(mi_lista)
+lista_invertida = manipulador.invertir()
 print(lista_invertida)
 ```
 
@@ -96,22 +110,28 @@ print(lista_invertida)
 
 **¿Qué hace el código?**
 
-Este código invierte el orden de los elementos en una lista sin usar el método `.reverse()` o slicing (`[::-1]`).
+Este código utiliza una clase `ManipuladorLista` para invertir el orden de los elementos en una lista sin usar el método `.reverse()` o slicing (`[::-1]`).
 
 **Análisis paso a paso:**
 
-1.  **`def manipular_lista(elementos):`**: Define una función que recibe una lista llamada `elementos`.
-2.  **`final = []`**: Crea una nueva lista vacía donde se guardará el resultado invertido.
-3.  **`for i in range(len(elementos) - 1, -1, -1):`**: Este es el núcleo de la lógica.
-    - `len(elementos)`: Obtiene la longitud de la lista (en este caso, 4).
-    - `len(elementos) - 1`: Calcula el índice del último elemento (en este caso, 3).
+1.  **`class ManipuladorLista:`**: Define una clase que encapsula las operaciones de manipulación de listas.
+2.  **`def __init__(self, elementos):`**: Constructor que inicializa el objeto con una lista de elementos.
+3.  **`self.elementos = elementos`**: Almacena la lista como atributo de la instancia.
+4.  **`def invertir(self):`**: Define un método que invierte la lista.
+5.  **`final = []`**: Crea una nueva lista vacía donde se guardará el resultado invertido.
+6.  **`for i in range(len(self.elementos) - 1, -1, -1):`**: Este es el núcleo de la lógica.
+    - `len(self.elementos)`: Obtiene la longitud de la lista almacenada en el objeto (en este caso, 4).
+    - `len(self.elementos) - 1`: Calcula el índice del último elemento (en este caso, 3).
     - `range(start, stop, step)`: `range(3, -1, -1)` genera una secuencia de números hacia atrás: `3, 2, 1, 0`. Estos son los índices de la lista en orden inverso.
-4.  **`final.append(elementos[i])`**: En cada paso del bucle, se toma el elemento de la lista original en la posición del índice inverso (`i`) y se añade a la nueva lista `final`.
-    - Primera iteración: `i` es 3. `final.append(elementos[3])` -> `final` es `['d']`.
-    - Segunda iteración: `i` es 2. `final.append(elementos[2])` -> `final` es `['d', 'c']`.
+7.  **`final.append(self.elementos[i])`**: En cada paso del bucle, se toma el elemento de la lista original en la posición del índice inverso (`i`) y se añade a la nueva lista `final`.
+    - Primera iteración: `i` es 3. `final.append(self.elementos[3])` -> `final` es `['d']`.
+    - Segunda iteración: `i` es 2. `final.append(self.elementos[2])` -> `final` es `['d', 'c']`.
     - Y así sucesivamente.
-5.  **`return final`**: Devuelve la nueva lista con los elementos en orden inverso.
-6.  **`print(lista_invertida)`**: Imprime el resultado, que será `['d', 'c', 'b', 'a']`.
+8.  **`return final`**: Devuelve la nueva lista con los elementos en orden inverso.
+9.  **`mi_lista = ["a", "b", "c", "d"]`**: Se crea una lista de ejemplo.
+10. **`manipulador = ManipuladorLista(mi_lista)`**: Se crea una instancia de la clase con la lista.
+11. **`lista_invertida = manipulador.invertir()`**: Se llama al método `invertir()` del objeto.
+12. **`print(lista_invertida)`**: Imprime el resultado, que será `['d', 'c', 'b', 'a']`.
 
 </details>
 
@@ -120,15 +140,20 @@ Este código invierte el orden de los elementos en una lista sin usar el método
 ### Ejercicio 4
 
 ```python
-def encontrar_valor(datos):
-    maximo = datos[0]
-    for n in datos:
-        if n > maximo:
-            maximo = n
-    return maximo
+class BuscadorValor:
+    def __init__(self, datos):
+        self.datos = datos
+    
+    def encontrar_maximo(self):
+        maximo = self.datos[0]
+        for n in self.datos:
+            if n > maximo:
+                maximo = n
+        return maximo
 
 numeros = [3, 11, 5, 8, 2]
-resultado = encontrar_valor(numeros)
+buscador = BuscadorValor(numeros)
+resultado = buscador.encontrar_maximo()
 print(resultado)
 ```
 
@@ -137,17 +162,23 @@ print(resultado)
 
 **¿Qué hace el código?**
 
-Este código encuentra el número más grande (el máximo) en una lista de números.
+Este código utiliza una clase `BuscadorValor` para encontrar el número más grande (el máximo) en una lista de números.
 
 **Análisis paso a paso:**
 
-1.  **`def encontrar_valor(datos):`**: Define una función que acepta una lista.
-2.  **`maximo = datos[0]`**: Inicializa una variable `maximo` con el primer elemento de la lista.
-3.  **`for n in datos:`**: Recorre cada número `n` en la lista.
-4.  **`if n > maximo:`**: Comprueba si el número actual `n` es mayor que el valor guardado en `maximo`.
-5.  **`maximo = n`**: Si el número actual es mayor, actualiza `maximo` con el valor de `n`.
-6.  **`return maximo`**: Después de revisar toda la lista, devuelve el valor más grande encontrado.
-7.  **`print(resultado)`**: Imprime el resultado, que será `11`.
+1.  **`class BuscadorValor:`**: Define una clase que encapsula la funcionalidad de búsqueda de valores.
+2.  **`def __init__(self, datos):`**: Constructor que inicializa el objeto con una lista de datos.
+3.  **`self.datos = datos`**: Almacena la lista como atributo de la instancia.
+4.  **`def encontrar_maximo(self):`**: Define un método que encuentra el valor máximo en la lista.
+5.  **`maximo = self.datos[0]`**: Inicializa una variable `maximo` con el primer elemento de la lista almacenada en el objeto.
+6.  **`for n in self.datos:`**: Recorre cada número `n` en la lista.
+7.  **`if n > maximo:`**: Comprueba si el número actual `n` es mayor que el valor guardado en `maximo`.
+8.  **`maximo = n`**: Si el número actual es mayor, actualiza `maximo` con el valor de `n`.
+9.  **`return maximo`**: Después de revisar toda la lista, devuelve el valor más grande encontrado.
+10. **`numeros = [3, 11, 5, 8, 2]`**: Se crea una lista de ejemplo.
+11. **`buscador = BuscadorValor(numeros)`**: Se crea una instancia de la clase con la lista de números.
+12. **`resultado = buscador.encontrar_maximo()`**: Se llama al método `encontrar_maximo()` del objeto.
+13. **`print(resultado)`**: Imprime el resultado, que será `11`.
 
 </details>
 
@@ -156,15 +187,20 @@ Este código encuentra el número más grande (el máximo) en una lista de núme
 ### Ejercicio 5
 
 ```python
-def contar_elemento(lista, elemento_buscado):
-    contador = 0
-    for item in lista:
-        if item == elemento_buscado:
-            contador += 1
-    return contador
+class ContadorElementos:
+    def __init__(self, lista):
+        self.lista = lista
+    
+    def contar_elemento(self, elemento_buscado):
+        contador = 0
+        for item in self.lista:
+            if item == elemento_buscado:
+                contador += 1
+        return contador
 
 items = ["a", "b", "a", "c", "a", "d"]
-veces = contar_elemento(items, "a")
+contador = ContadorElementos(items)
+veces = contador.contar_elemento("a")
 print(veces)
 ```
 
@@ -173,17 +209,23 @@ print(veces)
 
 **¿Qué hace el código?**
 
-Este código cuenta cuántas veces aparece un elemento específico dentro de una lista.
+Este código utiliza una clase `ContadorElementos` para contar cuántas veces aparece un elemento específico dentro de una lista.
 
 **Análisis paso a paso:**
 
-1.  **`def contar_elemento(lista, elemento_buscado):`**: Define una función que recibe una lista y el elemento a buscar.
-2.  **`contador = 0`**: Inicializa un contador en 0.
-3.  **`for item in lista:`**: Itera sobre cada `item` en la lista.
-4.  **`if item == elemento_buscado:`**: Comprueba si el `item` actual es igual al `elemento_buscado`.
-5.  **`contador += 1`**: Si son iguales, incrementa el `contador`.
-6.  **`return contador`**: Devuelve el número total de veces que se encontró el elemento.
-7.  **`print(veces)`**: Imprime el resultado, que será `3`.
+1.  **`class ContadorElementos:`**: Define una clase que encapsula la funcionalidad de conteo de elementos.
+2.  **`def __init__(self, lista):`**: Constructor que inicializa el objeto con una lista.
+3.  **`self.lista = lista`**: Almacena la lista como atributo de la instancia.
+4.  **`def contar_elemento(self, elemento_buscado):`**: Define un método que cuenta las ocurrencias de un elemento específico.
+5.  **`contador = 0`**: Inicializa un contador en 0.
+6.  **`for item in self.lista:`**: Itera sobre cada `item` en la lista almacenada en el objeto.
+7.  **`if item == elemento_buscado:`**: Comprueba si el `item` actual es igual al `elemento_buscado`.
+8.  **`contador += 1`**: Si son iguales, incrementa el `contador`.
+9.  **`return contador`**: Devuelve el número total de veces que se encontró el elemento.
+10. **`items = ["a", "b", "a", "c", "a", "d"]`**: Se crea una lista de ejemplo.
+11. **`contador = ContadorElementos(items)`**: Se crea una instancia de la clase con la lista.
+12. **`veces = contador.contar_elemento("a")`**: Se llama al método `contar_elemento()` del objeto.
+13. **`print(veces)`**: Imprime el resultado, que será `3`.
 
 </details>
 
@@ -192,15 +234,21 @@ Este código cuenta cuántas veces aparece un elemento específico dentro de una
 ### Ejercicio 6
 
 ```python
-def crear_mapa(claves, valores):
-    mapa = {}
-    for i in range(len(claves)):
-        mapa[claves[i]] = valores[i]
-    return mapa
+class CreadorMapa:
+    def __init__(self, claves, valores):
+        self.claves = claves
+        self.valores = valores
+    
+    def crear_diccionario(self):
+        mapa = {}
+        for i in range(len(self.claves)):
+            mapa[self.claves[i]] = self.valores[i]
+        return mapa
 
 lista_claves = ["uno", "dos", "tres"]
 lista_valores = [1, 2, 3]
-diccionario = crear_mapa(lista_claves, lista_valores)
+creador = CreadorMapa(lista_claves, lista_valores)
+diccionario = creador.crear_diccionario()
 print(diccionario)
 ```
 
@@ -209,16 +257,24 @@ print(diccionario)
 
 **¿Qué hace el código?**
 
-Este código crea un diccionario a partir de dos listas, una que contiene las claves y otra que contiene los valores.
+Este código utiliza una clase `CreadorMapa` para crear un diccionario a partir de dos listas, una que contiene las claves y otra que contiene los valores.
 
 **Análisis paso a paso:**
 
-1.  **`def crear_mapa(claves, valores):`**: Define una función que toma una lista de claves y una de valores.
-2.  **`mapa = {}`**: Crea un diccionario vacío.
-3.  **`for i in range(len(claves)):`**: Itera usando un índice `i` desde 0 hasta la longitud de la lista de claves menos uno.
-4.  **`mapa[claves[i]] = valores[i]`**: En cada iteración, usa el elemento en la posición `i` de `claves` como la nueva clave en el `mapa`, y le asigna el elemento en la misma posición `i` de la lista de `valores`.
-5.  **`return mapa`**: Devuelve el diccionario completo.
-6.  **`print(diccionario)`**: Imprime el resultado, que será `{'uno': 1, 'dos': 2, 'tres': 3}`.
+1.  **`class CreadorMapa:`**: Define una clase que encapsula la funcionalidad de creación de diccionarios.
+2.  **`def __init__(self, claves, valores):`**: Constructor que inicializa el objeto con una lista de claves y una de valores.
+3.  **`self.claves = claves`**: Almacena la lista de claves como atributo de la instancia.
+4.  **`self.valores = valores`**: Almacena la lista de valores como atributo de la instancia.
+5.  **`def crear_diccionario(self):`**: Define un método que crea el diccionario.
+6.  **`mapa = {}`**: Crea un diccionario vacío.
+7.  **`for i in range(len(self.claves)):`**: Itera usando un índice `i` desde 0 hasta la longitud de la lista de claves menos uno.
+8.  **`mapa[self.claves[i]] = self.valores[i]`**: En cada iteración, usa el elemento en la posición `i` de `self.claves` como la nueva clave en el `mapa`, y le asigna el elemento en la misma posición `i` de la lista de `self.valores`.
+9.  **`return mapa`**: Devuelve el diccionario completo.
+10. **`lista_claves = ["uno", "dos", "tres"]`**: Se crea una lista de claves.
+11. **`lista_valores = [1, 2, 3]`**: Se crea una lista de valores.
+12. **`creador = CreadorMapa(lista_claves, lista_valores)`**: Se crea una instancia de la clase con ambas listas.
+13. **`diccionario = creador.crear_diccionario()`**: Se llama al método `crear_diccionario()` del objeto.
+14. **`print(diccionario)`**: Imprime el resultado, que será `{'uno': 1, 'dos': 2, 'tres': 3}`.
 
 </details>
 
