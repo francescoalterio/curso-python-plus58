@@ -1,9 +1,5 @@
 # Guía Sencilla de Programación Orientada a Objetos (POO) en Python
 
-¡Hola! Si ya sabes lo básico de Python (variables, bucles, funciones), estás listo para el siguiente gran paso: la Programación Orientada a Objetos o POO.
-
-No te asustes por el nombre. Es solo una forma muy inteligente y ordenada de escribir código. Esta guía te lo explicará todo paso a paso.
-
 ---
 
 ## 1. La Idea Principal: ¿Qué es la POO?
