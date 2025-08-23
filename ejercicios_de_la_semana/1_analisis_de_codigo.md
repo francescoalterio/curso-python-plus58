@@ -70,7 +70,7 @@ print(texto_modificado)
 
 **¿Qué hace el código?**
 
-Este código elimina todas las vocales (mayúsculas y minúsculas) de una cadena de texto.
+El ejercicio 2 define una clase llamada TransformadorTexto que permite eliminar todas las vocales de una cadena de texto. Utiliza un método llamado transformar para procesar el texto original y devolver la versión sin vocales.
 
 **Análisis paso a paso:**
 
