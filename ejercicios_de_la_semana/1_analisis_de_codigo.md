@@ -283,16 +283,21 @@ Este código utiliza una clase `CreadorMapa` para crear un diccionario a partir 
 ### Ejercicio 7
 
 ```python
-def es_simetrico(texto):
-    texto_limpio = ""
-    for char in texto:
-        if char != " ":
-            texto_limpio += char.lower()
+class VerificadorSimetria:
+    def __init__(self, texto):
+        self.texto = texto
+    
+    def es_simetrico(self):
+        texto_limpio = ""
+        for char in self.texto:
+            if char != " ":
+                texto_limpio += char.lower()
 
-    return texto_limpio == texto_limpio[::-1]
+        return texto_limpio == texto_limpio[::-1]
 
 palabra = "Anita lava la tina"
-resultado = es_simetrico(palabra)
+verificador = VerificadorSimetria(palabra)
+resultado = verificador.es_simetrico()
 print(resultado)
 ```
 
@@ -301,17 +306,23 @@ print(resultado)
 
 **¿Qué hace el código?**
 
-Este código verifica si una cadena de texto es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda), ignorando espacios y mayúsculas/minúsculas.
+Este código utiliza una clase `VerificadorSimetria` para verificar si una cadena de texto es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda), ignorando espacios y mayúsculas/minúsculas.
 
 **Análisis paso a paso:**
 
-1.  **`def es_simetrico(texto):`**: Define una función que recibe una cadena de texto.
-2.  **`texto_limpio = ""`**: Inicializa una cadena vacía para guardar la versión "limpia" del texto.
-3.  **`for char in texto:`**: Itera sobre cada caracter del texto original.
-4.  **`if char != " ":`**: Comprueba si el caracter no es un espacio.
-5.  **`texto_limpio += char.lower()`**: Si no es un espacio, lo convierte a minúscula y lo añade a `texto_limpio`. Al final del bucle, `texto_limpio` será `anitalavalatina`.
-6.  **`return texto_limpio == texto_limpio[::-1]`**: Compara el texto limpio con su versión invertida (`[::-1]` es una forma de invertir una cadena). Devuelve `True` si son iguales, `False` si no.
-7.  **`print(resultado)`**: Imprime el resultado, que será `True`.
+1.  **`class VerificadorSimetria:`**: Define una clase que encapsula la funcionalidad de verificación de simetría/palíndromos.
+2.  **`def __init__(self, texto):`**: Constructor que inicializa el objeto con una cadena de texto.
+3.  **`self.texto = texto`**: Almacena el texto como atributo de la instancia.
+4.  **`def es_simetrico(self):`**: Define un método que verifica si el texto es simétrico.
+5.  **`texto_limpio = ""`**: Inicializa una cadena vacía para guardar la versión "limpia" del texto.
+6.  **`for char in self.texto:`**: Itera sobre cada caracter del texto almacenado en el objeto.
+7.  **`if char != " ":`**: Comprueba si el caracter no es un espacio.
+8.  **`texto_limpio += char.lower()`**: Si no es un espacio, lo convierte a minúscula y lo añade a `texto_limpio`. Al final del bucle, `texto_limpio` será `anitalavalatina`.
+9.  **`return texto_limpio == texto_limpio[::-1]`**: Compara el texto limpio con su versión invertida (`[::-1]` es una forma de invertir una cadena). Devuelve `True` si son iguales, `False` si no.
+10. **`palabra = "Anita lava la tina"`**: Se crea una cadena de ejemplo.
+11. **`verificador = VerificadorSimetria(palabra)`**: Se crea una instancia de la clase con el texto.
+12. **`resultado = verificador.es_simetrico()`**: Se llama al método `es_simetrico()` del objeto.
+13. **`print(resultado)`**: Imprime el resultado, que será `True`.
 
 </details>
 
@@ -320,14 +331,19 @@ Este código verifica si una cadena de texto es un palíndromo (se lee igual de 
 ### Ejercicio 8
 
 ```python
-def generar_secuencia(limite):
-    secuencia = []
-    for i in range(1, limite + 1):
-        secuencia.append(i * i)
-    return secuencia
+class GeneradorSecuencia:
+    def __init__(self, limite):
+        self.limite = limite
+    
+    def generar_cuadrados(self):
+        secuencia = []
+        for i in range(1, self.limite + 1):
+            secuencia.append(i * i)
+        return secuencia
 
 numero_limite = 5
-cuadrados = generar_secuencia(numero_limite)
+generador = GeneradorSecuencia(numero_limite)
+cuadrados = generador.generar_cuadrados()
 print(cuadrados)
 ```
 
@@ -336,16 +352,22 @@ print(cuadrados)
 
 **¿Qué hace el código?**
 
-Este código genera una lista con los cuadrados de los números desde 1 hasta un límite especificado.
+Este código utiliza una clase `GeneradorSecuencia` para generar una lista con los cuadrados de los números desde 1 hasta un límite especificado.
 
 **Análisis paso a paso:**
 
-1.  **`def generar_secuencia(limite):`**: Define una función que toma un número `limite` como argumento.
-2.  **`secuencia = []`**: Crea una lista vacía para almacenar los resultados.
-3.  **`for i in range(1, limite + 1):`**: Inicia un bucle que genera números desde 1 hasta `limite` (inclusive). Para `limite = 5`, el rango será `1, 2, 3, 4, 5`.
-4.  **`secuencia.append(i * i)`**: En cada iteración, calcula el cuadrado del número `i` y lo añade a la lista `secuencia`.
-5.  **`return secuencia`**: Devuelve la lista de cuadrados.
-6.  **`print(cuadrados)`**: Imprime el resultado, que será `[1, 4, 9, 16, 25]`.
+1.  **`class GeneradorSecuencia:`**: Define una clase que encapsula la funcionalidad de generación de secuencias.
+2.  **`def __init__(self, limite):`**: Constructor que inicializa el objeto con un número límite.
+3.  **`self.limite = limite`**: Almacena el límite como atributo de la instancia.
+4.  **`def generar_cuadrados(self):`**: Define un método que genera la secuencia de cuadrados.
+5.  **`secuencia = []`**: Crea una lista vacía para almacenar los resultados.
+6.  **`for i in range(1, self.limite + 1):`**: Inicia un bucle que genera números desde 1 hasta `self.limite` (inclusive). Para `limite = 5`, el rango será `1, 2, 3, 4, 5`.
+7.  **`secuencia.append(i * i)`**: En cada iteración, calcula el cuadrado del número `i` y lo añade a la lista `secuencia`.
+8.  **`return secuencia`**: Devuelve la lista de cuadrados.
+9.  **`numero_limite = 5`**: Se define el límite.
+10. **`generador = GeneradorSecuencia(numero_limite)`**: Se crea una instancia de la clase con el límite.
+11. **`cuadrados = generador.generar_cuadrados()`**: Se llama al método `generar_cuadrados()` del objeto.
+12. **`print(cuadrados)`**: Imprime el resultado, que será `[1, 4, 9, 16, 25]`.
 
 </details>
 
@@ -354,15 +376,20 @@ Este código genera una lista con los cuadrados de los números desde 1 hasta un
 ### Ejercicio 9
 
 ```python
-def aplanar_estructura(lista_anidada):
-    plana = []
-    for sublista in lista_anidada:
-        for item in sublista:
-            plana.append(item)
-    return plana
+class AplanadorEstructura:
+    def __init__(self, lista_anidada):
+        self.lista_anidada = lista_anidada
+    
+    def aplanar(self):
+        plana = []
+        for sublista in self.lista_anidada:
+            for item in sublista:
+                plana.append(item)
+        return plana
 
 matriz = [[1, 2], [3, 4, 5], [6]]
-lista_plana = aplanar_estructura(matriz)
+aplanador = AplanadorEstructura(matriz)
+lista_plana = aplanador.aplanar()
 print(lista_plana)
 ```
 
@@ -371,17 +398,23 @@ print(lista_plana)
 
 **¿Qué hace el código?**
 
-Este código "aplana" una lista de listas, es decir, convierte una lista de varias listas en una sola lista que contiene todos los elementos.
+Este código utiliza una clase `AplanadorEstructura` para "aplanar" una lista de listas, es decir, convierte una lista de varias listas en una sola lista que contiene todos los elementos.
 
 **Análisis paso a paso:**
 
-1.  **`def aplanar_estructura(lista_anidada):`**: Define una función que toma una lista de listas.
-2.  **`plana = []`**: Crea una lista vacía para el resultado.
-3.  **`for sublista in lista_anidada:`**: El primer bucle itera sobre cada una de las listas internas (las `sublista`).
-4.  **`for item in sublista:`**: El segundo bucle (anidado) itera sobre cada `item` dentro de la `sublista` actual.
-5.  **`plana.append(item)`**: Añade cada `item` individual a la lista `plana`.
-6.  **`return plana`**: Devuelve la lista aplanada.
-7.  **`print(lista_plana)`**: Imprime el resultado, que será `[1, 2, 3, 4, 5, 6]`.
+1.  **`class AplanadorEstructura:`**: Define una clase que encapsula la funcionalidad de aplanado de estructuras.
+2.  **`def __init__(self, lista_anidada):`**: Constructor que inicializa el objeto con una lista de listas.
+3.  **`self.lista_anidada = lista_anidada`**: Almacena la lista anidada como atributo de la instancia.
+4.  **`def aplanar(self):`**: Define un método que aplana la estructura.
+5.  **`plana = []`**: Crea una lista vacía para el resultado.
+6.  **`for sublista in self.lista_anidada:`**: El primer bucle itera sobre cada una de las listas internas (las `sublista`) en la lista almacenada en el objeto.
+7.  **`for item in sublista:`**: El segundo bucle (anidado) itera sobre cada `item` dentro de la `sublista` actual.
+8.  **`plana.append(item)`**: Añade cada `item` individual a la lista `plana`.
+9.  **`return plana`**: Devuelve la lista aplanada.
+10. **`matriz = [[1, 2], [3, 4, 5], [6]]`**: Se crea una lista anidada de ejemplo.
+11. **`aplanador = AplanadorEstructura(matriz)`**: Se crea una instancia de la clase con la matriz.
+12. **`lista_plana = aplanador.aplanar()`**: Se llama al método `aplanar()` del objeto.
+13. **`print(lista_plana)`**: Imprime el resultado, que será `[1, 2, 3, 4, 5, 6]`.
 
 </details>
 
@@ -390,16 +423,22 @@ Este código "aplana" una lista de listas, es decir, convierte una lista de vari
 ### Ejercicio 10
 
 ```python
-def encontrar_comunes(lista1, lista2):
-    comunes = []
-    for item1 in lista1:
-        if item1 in lista2:
-            comunes.append(item1)
-    return comunes
+class BuscadorComunes:
+    def __init__(self, lista1, lista2):
+        self.lista1 = lista1
+        self.lista2 = lista2
+    
+    def encontrar_elementos_comunes(self):
+        comunes = []
+        for item1 in self.lista1:
+            if item1 in self.lista2:
+                comunes.append(item1)
+        return comunes
 
 grupo_a = [1, 2, 3, 4, 5]
 grupo_b = [4, 5, 6, 7, 8]
-elementos_comunes = encontrar_comunes(grupo_a, grupo_b)
+buscador = BuscadorComunes(grupo_a, grupo_b)
+elementos_comunes = buscador.encontrar_elementos_comunes()
 print(elementos_comunes)
 ```
 
@@ -408,17 +447,25 @@ print(elementos_comunes)
 
 **¿Qué hace el código?**
 
-Este código encuentra los elementos que son comunes a dos listas y los devuelve en una nueva lista.
+Este código utiliza una clase `BuscadorComunes` para encontrar los elementos que son comunes a dos listas y los devuelve en una nueva lista.
 
 **Análisis paso a paso:**
 
-1.  **`def encontrar_comunes(lista1, lista2):`**: Define una función que acepta dos listas.
-2.  **`comunes = []`**: Inicializa una lista vacía para guardar los elementos comunes.
-3.  **`for item1 in lista1:`**: Itera sobre cada elemento en la primera lista (`lista1`).
-4.  **`if item1 in lista2:`**: Para cada elemento de `lista1`, comprueba si también existe en `lista2`.
-5.  **`comunes.append(item1)`**: Si el elemento está en ambas listas, se añade a la lista `comunes`.
-6.  **`return comunes`**: Devuelve la lista de elementos comunes.
-7.  **`print(elementos_comunes)`**: Imprime el resultado, que será `[4, 5]`.
+1.  **`class BuscadorComunes:`**: Define una clase que encapsula la funcionalidad de búsqueda de elementos comunes.
+2.  **`def __init__(self, lista1, lista2):`**: Constructor que inicializa el objeto con dos listas.
+3.  **`self.lista1 = lista1`**: Almacena la primera lista como atributo de la instancia.
+4.  **`self.lista2 = lista2`**: Almacena la segunda lista como atributo de la instancia.
+5.  **`def encontrar_elementos_comunes(self):`**: Define un método que encuentra los elementos comunes.
+6.  **`comunes = []`**: Inicializa una lista vacía para guardar los elementos comunes.
+7.  **`for item1 in self.lista1:`**: Itera sobre cada elemento en la primera lista almacenada en el objeto.
+8.  **`if item1 in self.lista2:`**: Para cada elemento de `self.lista1`, comprueba si también existe en `self.lista2`.
+9.  **`comunes.append(item1)`**: Si el elemento está en ambas listas, se añade a la lista `comunes`.
+10. **`return comunes`**: Devuelve la lista de elementos comunes.
+11. **`grupo_a = [1, 2, 3, 4, 5]`**: Se crea la primera lista de ejemplo.
+12. **`grupo_b = [4, 5, 6, 7, 8]`**: Se crea la segunda lista de ejemplo.
+13. **`buscador = BuscadorComunes(grupo_a, grupo_b)`**: Se crea una instancia de la clase con ambas listas.
+14. **`elementos_comunes = buscador.encontrar_elementos_comunes()`**: Se llama al método del objeto.
+15. **`print(elementos_comunes)`**: Imprime el resultado, que será `[4, 5]`.
 
 </details>
 
@@ -427,16 +474,21 @@ Este código encuentra los elementos que son comunes a dos listas y los devuelve
 ### Ejercicio 11
 
 ```python
-def calcular_valor(n):
-    if n == 0:
-        return 1
-    resultado = 1
-    for i in range(1, n + 1):
-        resultado *= i
-    return resultado
+class CalculadoraFactorial:
+    def __init__(self, n):
+        self.n = n
+    
+    def calcular_factorial(self):
+        if self.n == 0:
+            return 1
+        resultado = 1
+        for i in range(1, self.n + 1):
+            resultado *= i
+        return resultado
 
 numero = 5
-factorial = calcular_valor(numero)
+calculadora = CalculadoraFactorial(numero)
+factorial = calculadora.calcular_factorial()
 print(factorial)
 ```
 
@@ -445,22 +497,29 @@ print(factorial)
 
 **¿Qué hace el código?**
 
-Este código calcula el factorial de un número entero no negativo.
+Este código utiliza una clase `CalculadoraFactorial` para calcular el factorial de un número entero no negativo.
 
 **Análisis paso a paso:**
 
-1.  **`def calcular_valor(n):`**: Define una función que toma un número `n`.
-2.  **`if n == 0:`**: Caso especial: el factorial de 0 es 1.
-3.  **`resultado = 1`**: Inicializa el resultado en 1.
-4.  **`for i in range(1, n + 1):`**: Itera desde 1 hasta `n`. Para `n=5`, los valores de `i` serán 1, 2, 3, 4, 5.
-5.  **`resultado *= i`**: Multiplica el `resultado` actual por el número de la iteración `i`.
+1.  **`class CalculadoraFactorial:`**: Define una clase que encapsula la funcionalidad de cálculo de factoriales.
+2.  **`def __init__(self, n):`**: Constructor que inicializa el objeto con un número `n`.
+3.  **`self.n = n`**: Almacena el número como atributo de la instancia.
+4.  **`def calcular_factorial(self):`**: Define un método que calcula el factorial.
+5.  **`if self.n == 0:`**: Caso especial: el factorial de 0 es 1.
+6.  **`return 1`**: Devuelve 1 para el caso base.
+7.  **`resultado = 1`**: Inicializa el resultado en 1.
+8.  **`for i in range(1, self.n + 1):`**: Itera desde 1 hasta `self.n`. Para `n=5`, los valores de `i` serán 1, 2, 3, 4, 5.
+9.  **`resultado *= i`**: Multiplica el `resultado` actual por el número de la iteración `i`.
     - 1 \* 1 = 1
     - 1 \* 2 = 2
     - 2 \* 3 = 6
     - 6 \* 4 = 24
     - 24 \* 5 = 120
-6.  **`return resultado`**: Devuelve el resultado final.
-7.  **`print(factorial)`**: Imprime el resultado, que será `120`.
+10. **`return resultado`**: Devuelve el resultado final.
+11. **`numero = 5`**: Se define el número para calcular el factorial.
+12. **`calculadora = CalculadoraFactorial(numero)`**: Se crea una instancia de la clase con el número.
+13. **`factorial = calculadora.calcular_factorial()`**: Se llama al método `calcular_factorial()` del objeto.
+14. **`print(factorial)`**: Imprime el resultado, que será `120`.
 
 </details>
 
@@ -469,15 +528,20 @@ Este código calcula el factorial de un número entero no negativo.
 ### Ejercicio 12
 
 ```python
-def filtrar_unicos(lista_original):
-    lista_unica = []
-    for item in lista_original:
-        if item not in lista_unica:
-            lista_unica.append(item)
-    return lista_unica
+class FiltradorUnicos:
+    def __init__(self, lista_original):
+        self.lista_original = lista_original
+    
+    def obtener_elementos_unicos(self):
+        lista_unica = []
+        for item in self.lista_original:
+            if item not in lista_unica:
+                lista_unica.append(item)
+        return lista_unica
 
 datos_repetidos = [1, 2, 2, 3, 4, 4, 4, 5]
-datos_unicos = filtrar_unicos(datos_repetidos)
+filtrador = FiltradorUnicos(datos_repetidos)
+datos_unicos = filtrador.obtener_elementos_unicos()
 print(datos_unicos)
 ```
 
@@ -486,17 +550,23 @@ print(datos_unicos)
 
 **¿Qué hace el código?**
 
-Este código elimina los elementos duplicados de una lista, conservando el orden de la primera aparición de cada elemento.
+Este código utiliza una clase `FiltradorUnicos` para eliminar los elementos duplicados de una lista, conservando el orden de la primera aparición de cada elemento.
 
 **Análisis paso a paso:**
 
-1.  **`def filtrar_unicos(lista_original):`**: Define una función que toma una lista.
-2.  **`lista_unica = []`**: Crea una nueva lista vacía que contendrá solo elementos únicos.
-3.  **`for item in lista_original:`**: Itera sobre cada elemento de la lista original.
-4.  **`if item not in lista_unica:`**: Comprueba si el elemento actual **no** ha sido añadido ya a `lista_unica`.
-5.  **`lista_unica.append(item)`**: Si el elemento no está en `lista_unica`, lo añade. Si ya está, este paso se omite.
-6.  **`return lista_unica`**: Devuelve la lista sin duplicados.
-7.  **`print(datos_unicos)`**: Imprime el resultado, que será `[1, 2, 3, 4, 5]`.
+1.  **`class FiltradorUnicos:`**: Define una clase que encapsula la funcionalidad de filtrado de elementos únicos.
+2.  **`def __init__(self, lista_original):`**: Constructor que inicializa el objeto con una lista.
+3.  **`self.lista_original = lista_original`**: Almacena la lista como atributo de la instancia.
+4.  **`def obtener_elementos_unicos(self):`**: Define un método que filtra los elementos únicos.
+5.  **`lista_unica = []`**: Crea una nueva lista vacía que contendrá solo elementos únicos.
+6.  **`for item in self.lista_original:`**: Itera sobre cada elemento de la lista almacenada en el objeto.
+7.  **`if item not in lista_unica:`**: Comprueba si el elemento actual **no** ha sido añadido ya a `lista_unica`.
+8.  **`lista_unica.append(item)`**: Si el elemento no está en `lista_unica`, lo añade. Si ya está, este paso se omite.
+9.  **`return lista_unica`**: Devuelve la lista sin duplicados.
+10. **`datos_repetidos = [1, 2, 2, 3, 4, 4, 4, 5]`**: Se crea una lista con duplicados.
+11. **`filtrador = FiltradorUnicos(datos_repetidos)`**: Se crea una instancia de la clase con la lista.
+12. **`datos_unicos = filtrador.obtener_elementos_unicos()`**: Se llama al método del objeto.
+13. **`print(datos_unicos)`**: Imprime el resultado, que será `[1, 2, 3, 4, 5]`.
 
 </details>
 
