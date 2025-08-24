@@ -419,3 +419,188 @@ Para guardar conjuntos de datos de forma organizada. Cada tipo de "caja" tiene s
           print("Lista de la compra:")
           print(contenido)
   ```
+
+## 6. Programación Orientada a Objetos (POO): Creando Tus Propias Herramientas
+
+Hasta ahora, has usado herramientas y tipos de datos que Python te da. La POO te permite dar un paso más allá y **crear tus propios tipos de datos complejos**, con sus propias características y comportamientos. Es como pasar de usar herramientas prefabricadas a diseñar y construir las tuyas.
+
+La idea central es agrupar datos (atributos) y las funciones que operan sobre esos datos (métodos) en una sola unidad llamada **objeto**.
+
+- **Clase:** Es la **receta** o el **molde**. Define cómo será un objeto. Por ejemplo, una clase `Perro`.
+- **Objeto:** Es la **instancia** creada a partir de la clase. Es el perro real que construyes con la receta. Puedes crear muchos objetos (`firulais`, `chispita`) a partir de una sola clase.
+
+### 6.1 Bloques de Construcción: Clases, Atributos y Métodos
+
+- **`class`**: La palabra clave para definir una nueva "receta".
+- **Constructor (`__init__`)**: Un método especial que se ejecuta automáticamente al crear un nuevo objeto. Su trabajo es inicializar los atributos.
+- **`self`**: Se refiere al objeto específico que se está creando o usando. Es la forma que tiene un objeto de acceder a "sus propios" datos.
+- **Atributos**: Las variables que pertenecen a un objeto (`self.nombre`, `self.raza`). Son sus características.
+- **Métodos**: Las funciones que pertenecen a un objeto (`self.ladrar()`). Son sus acciones.
+
+```python
+# Esta es nuestra "receta" o "molde" para crear perros.
+class Perro:
+    # 1. El constructor: se ejecuta al crear un nuevo perro.
+    # 'self' se refiere al objeto específico que estamos creando.
+    def __init__(self, nombre_perro, raza_perro):
+        # 2. Atributos: guardamos los datos que nos dan en el objeto.
+        self.nombre = nombre_perro  # 'self.nombre' es "el nombre de ESTE perro".
+        self.raza = raza_perro      # 'self.raza' es "la raza de ESTE perro".
+
+    # 3. Un método: una acción que el perro puede hacer.
+    def ladrar(self):
+        return f"¡Guau! Soy {self.nombre}, un {self.raza}."
+
+# --- Ahora, usemos nuestra receta para crear objetos ---
+
+# Creamos nuestro primer objeto Perro. Esto llama a __init__.
+perro1 = Perro("Firulais", "Pastor Alemán")
+perro2 = Perro("Chispita", "Chihuahua")
+
+# Llamamos a sus métodos para que realicen acciones.
+print(perro1.ladrar())  # Salida: ¡Guau! Soy Firulais, un Pastor Alemán.
+print(perro2.ladrar())  # Salida: ¡Guau! Soy Chispita, un Chihuahua.
+```
+
+### 6.2 Los 4 Pilares de la POO
+
+Estos son los conceptos que le dan todo su poder a la POO.
+
+#### 1. Encapsulamiento: Protegiendo tus Datos
+
+La idea es simple: **proteger los datos de un objeto para que no se modifiquen por accidente**. Imagina una cuenta bancaria: no querrías que cualquiera pudiera cambiar tu saldo directamente. Querrías que solo se pudiera hacer a través de métodos seguros como `depositar()` o `extraer()`.
+
+En Python, usamos una convención: si un atributo empieza con un guion bajo (ej: `_saldo`), es una señal que dice: "Oye, esto es interno, por favor no lo toques directamente desde fuera".
+
+```python
+class CuentaBancaria:
+    def __init__(self, titular, saldo_inicial=0):
+        self.titular = titular
+        # Ponemos un guion bajo para indicar que es un atributo "protegido".
+        self._saldo = saldo_inicial
+
+    # Método público para depositar (la forma correcta de cambiar el saldo).
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self._saldo += cantidad
+            print(f"Depósito exitoso. Nuevo saldo: {self._saldo}")
+        else:
+            print("Error: la cantidad debe ser positiva.")
+
+    # Método público para ver el saldo de forma segura.
+    def ver_saldo(self):
+        return f"El saldo de {self.titular} es: ${self._saldo}"
+
+# --- Uso correcto de la clase ---
+mi_cuenta = CuentaBancaria("Ana", 1000)
+mi_cuenta.depositar(500)
+print(mi_cuenta.ver_saldo())
+
+# Aunque Python te deja hacer esto, ¡es una mala práctica!
+# mi_cuenta._saldo = 999999 # ¡No hagas esto! Ignoras la protección.
+```
+
+#### 2. Herencia: Creando Clases a partir de Otras
+
+La herencia te permite crear una nueva clase (**clase hija**) que "hereda" todos los atributos y métodos de otra clase (**clase padre**). Esto es genial para reutilizar código.
+
+```python
+# --- Clase Padre (la más general) ---
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def comer(self):
+        return f"{self.nombre} está comiendo."
+
+# --- Clases Hijas (heredan de Animal) ---
+class Perro(Animal):
+    # Hereda nombre y el método comer() de Animal.
+    # Añadimos un método que solo los perros tienen.
+    def ladrar(self):
+        return "¡Guau!"
+
+class Gato(Animal):
+    # Hereda de Animal y añade su propio método.
+    def maullar(self):
+        return "¡Miau!"
+
+# --- Creamos objetos de las clases hijas ---
+mi_perro = Perro("Rocky")
+mi_gato = Gato("Pelusa")
+
+# Pueden usar métodos de la clase padre (Animal)
+print(mi_perro.comer())  # Salida: Rocky está comiendo.
+# Y también pueden usar sus propios métodos
+print(mi_perro.ladrar()) # Salida: ¡Guau!
+```
+
+#### 3. Polimorfismo: Mismo Nombre, Diferente Acción
+
+El polimorfismo significa "muchas formas". Se refiere a que objetos de diferentes clases pueden responder al mismo método de maneras distintas. Esto hace tu código súper flexible.
+
+```python
+# Añadimos el método hacer_sonido a nuestras clases hijas
+class Perro(Animal):
+    def hacer_sonido(self):
+        return "¡Guau!"
+
+class Gato(Animal):
+    def hacer_sonido(self):
+        return "¡Miau!"
+
+class Vaca(Animal):
+    def hacer_sonido(self):
+        return "¡Muuu!"
+
+# --- La magia del polimorfismo ---
+# Esta función no sabe qué tipo de animal recibe, solo que puede .hacer_sonido()
+def imprimir_sonido(animal_objeto):
+    print(animal_objeto.hacer_sonido())
+
+# Creamos objetos de diferentes clases
+perro = Perro("Toby")
+gato = Gato("Mishi")
+vaca = Vaca("Lola")
+
+# Llamamos a la misma función con objetos diferentes
+imprimir_sonido(perro)  # Salida: ¡Guau!
+imprimir_sonido(gato)   # Salida: ¡Miau!
+imprimir_sonido(vaca)   # Salida: ¡Muuu!
+```
+
+#### 4. Abstracción: Ocultando la Complejidad
+
+La abstracción consiste en ocultar los detalles complejos y mostrar solo las funcionalidades esenciales. En POO, podemos crear "clases plantilla" que definen qué métodos **deben** tener las clases hijas, actuando como un "contrato".
+
+```python
+# Creamos un "contrato": cualquier 'Figura' DEBE tener un método para calcular su área.
+class Figura:
+    def calcular_area(self):
+        # Si una clase hija no implementa este método, dará un error.
+        raise NotImplementedError("Las clases hijas deben implementar 'calcular_area'")
+
+# --- Ahora creamos clases concretas que cumplen el contrato ---
+class Circulo(Figura):
+    def __init__(self, radio):
+        self.radio = radio
+
+    # Cumplimos el contrato implementando el método.
+    def calcular_area(self):
+        return 3.14159 * (self.radio ** 2)
+
+class Cuadrado(Figura):
+    def __init__(self, lado):
+        self.lado = lado
+
+    # También cumplimos el contrato.
+    def calcular_area(self):
+        return self.lado * self.lado
+
+# --- Uso ---
+mi_circulo = Circulo(10)
+mi_cuadrado = Cuadrado(5)
+
+print(f"Área del círculo: {mi_circulo.calcular_area()}")
+print(f"Área del cuadrado: {mi_cuadrado.calcular_area()}")
+```
